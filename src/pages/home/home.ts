@@ -40,7 +40,7 @@ export class HomePage {
   }
 
   forwardTo(section) {
-    this.app.getRootNavs()[0].push(section.page);
+    this.app.getRootNavs()[0].push(section.page, section.params);
   }
 
   sections: any = [
@@ -65,9 +65,16 @@ export class HomePage {
       page: 'OperationHistoryPage'
     },
     {
-      name: '日常检查',
+      name: '房屋日常检查',
       icon: 'assets/imgs/icon_daily_check.png',
-      page: 'NewDailyCheckPage'
+      page: 'NewDailyCheckPage',
+      params: { type: 1 }
+    },
+    {
+      name: '单位日常检查',
+      icon: 'assets/imgs/icon_daily_check.png',
+      page: 'NewDailyCheckPage',
+      params: { type: 2 }
     },
     {
       name: '新增从业人员',
