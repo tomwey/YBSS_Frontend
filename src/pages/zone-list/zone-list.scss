@@ -1,0 +1,36 @@
+page-zone-list {
+    ion-row,ion-col {
+        margin: 0!important;
+        padding: 0!important;
+    }
+    .name {
+        font-size: 14px;
+        font-weight: normal;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    .stat-box {
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .digit {
+            font-size: 18px;
+            color: #333;
+            font-family: 'PingFang SC';
+            
+            // text-align: center;
+        }
+    
+        .label-text {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+            // text-align: center;
+        }
+
+    }
+}

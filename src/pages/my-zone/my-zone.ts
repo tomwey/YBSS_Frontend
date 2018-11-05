@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, App } from 'ionic-angular';
 
 /**
  * Generated class for the MyZonePage page.
@@ -53,11 +53,17 @@ export class MyZonePage {
       company_count: 324,
     },
   ];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    private app: App,
+    public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad MyZonePage');
+  }
+
+  onClick(item) {
+    this.app.getRootNavs()[0].push('ZoneListPage', item);
   }
 
 }
