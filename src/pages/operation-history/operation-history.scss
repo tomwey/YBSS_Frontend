@@ -1,3 +1,66 @@
 page-operation-history {
+    .custom-card {
+        position: relative;
+        .line {
+            position: absolute;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 4px;
+            height: 100%;
+            // background: red;
+        }
 
+        .line-10 {
+            background: brown;
+        }
+
+        .line-20 {
+            background: blueviolet;
+        }
+
+        .line-30 {
+            background: cadetblue;
+        }
+
+        .line-40 {
+            background: orange;
+        }
+
+        .line-50 {
+            background: fuchsia;
+        }
+    }
+
+    // .card-10 {
+    //     &::before {
+    //         background: red;
+    //     }
+        
+    // }
+
+    // .card-20 {
+    //     &::before {
+    //         background: red;
+    //     }
+    // }
+
+    // .card-30 {
+    //     &::before {
+    //         background: red;
+    //     }
+    // }
+
+    // .card-40 {
+    //     &::before {
+    //         background: red;
+    //     }
+    // }
+
+    // .card-50 {
+    //     &::before {
+    //         background: red;
+    //     }
+    // }
 }
