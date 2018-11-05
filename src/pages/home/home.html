@@ -50,7 +50,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-4 *ngFor="let sec of sections">
-            <div class="section">
+            <div class="section" tappable (click)="forwardTo(sec);">
               <img [src]="sec.icon">
               <p>{{sec.name}}</p>
             </div>
