@@ -49,45 +49,55 @@ export class ZoneListPage {
 
   onClick(item) {
     let data: any = [
-    {
-      name: '内江市市中区安居街20号',
-      house_count: 345,
-      people_count: 948,
-      company_count: 324,
-    },
-    {
-      name: '内江市市中区安居街21号',
-      house_count: 325,
-      people_count: 248,
-      company_count: 324,
-    },
-    {
-      name: '内江市市中区安居街30号',
-      house_count: 345,
-      people_count: 2948,
-      company_count: 324,
-    },
-    {
-      name: '内江市市中区安居街23号',
-      house_count: 245,
-      people_count: 2348,
-      company_count: 324,
-    },
-    {
-      name: '内江市市中区安居街40号',
-      house_count: 345,
-      people_count: 3948,
-      company_count: 324,
-    },
-    {
-      name: '内江市市中区安居街41号',
-      house_count: 45,
-      people_count: 248,
-      company_count: 324,
-    },
-  ];
+      {
+        name: '内江市市中区安居街20号',
+        house_count: 345,
+        people_count: 948,
+        company_count: 324,
+        has_children: 0,
+      },
+      {
+        name: '内江市市中区安居街21号',
+        house_count: 325,
+        people_count: 248,
+        company_count: 324,
+        has_children: 0,
+      },
+      {
+        name: '内江市市中区安居街30号',
+        house_count: 345,
+        people_count: 2948,
+        company_count: 324,
+        has_children: 0,
+      },
+      {
+        name: '内江市市中区安居街23号',
+        house_count: 245,
+        people_count: 2348,
+        company_count: 324,
+        has_children: 0,
+      },
+      {
+        name: '内江市市中区安居街40号',
+        house_count: 345,
+        people_count: 3948,
+        company_count: 324,
+        has_children: 0,
+      },
+      {
+        name: '内江市市中区安居街41号',
+        house_count: 45,
+        people_count: 248,
+        company_count: 324,
+        has_children: 0,
+      },
+    ];
 
-    this.app.getRootNavs()[0].push('ZoneListPage', { item: item, data: data });
+    if (item.has_children) {
+      this.app.getRootNavs()[0].push('ZoneListPage', { item: item, data: data });
+    } else {
+      this.app.getRootNavs()[0].push('HouseDetailPage');
+    }
   }
 
   listData: any = [
@@ -96,36 +106,42 @@ export class ZoneListPage {
       house_count: 3245,
       people_count: 23948,
       company_count: 324,
+      has_children: 1,
     },
     {
       name: '市中区',
       house_count: 3245,
       people_count: 23948,
       company_count: 324,
+      has_children: 1,
     },
     {
       name: '战旗村',
       house_count: 3245,
       people_count: 23948,
       company_count: 324,
+      has_children: 1,
     },
     {
       name: '凤凰山街道',
       house_count: 3245,
       people_count: 23948,
       company_count: 324,
+      has_children: 1,
     },
     {
       name: '青羊区',
       house_count: 3245,
       people_count: 23948,
       company_count: 324,
+      has_children: 1,
     },
     {
       name: '平头乡',
       house_count: 3245,
       people_count: 23948,
       company_count: 324,
+      has_children: 1,
     },
   ];
 
