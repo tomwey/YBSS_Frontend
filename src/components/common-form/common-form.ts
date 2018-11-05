@@ -41,4 +41,8 @@ export class CommonFormComponent {
     this.onControlSelect.emit(item);
   }
 
+  openScan(item) {
+    
+  }
+
 }

@@ -18,6 +18,10 @@
         pattern="{{item.pattern}}"
         placeholder="{{placeholderFromItem(item)}}" 
         [(ngModel)]="item.value" [disabled]="item.disabled"></ion-input>
+      
+      <button ion-button icon-only clear item-right *ngIf="item.can_scan" (click)="openScan(item);">
+        <ion-icon name="ios-qr-scanner-outline"></ion-icon>
+      </button>
 
       <!-- 多文本输入框 -->
       <ion-textarea *ngIf="item.type == 3" rows="6" 
