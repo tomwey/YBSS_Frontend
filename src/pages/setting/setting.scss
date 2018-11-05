@@ -1,0 +1,54 @@
+page-setting {
+    .user-caption {
+        background: -webkit-linear-gradient(#56b1f9, #439cf8); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient( #56b1f9, #439cf8); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(#56b1f9, #439cf8); /* Firefox 3.6 - 15 */
+        background: linear-gradient(#56b1f9, #439cf8); /* 标准的语法 */
+        padding: 15px;
+
+        text-align: center;
+        color: white;
+
+        img {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            margin-top: 10px;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+    }
+
+    .list-ios {
+        margin-bottom: 20px;
+
+        .item-block:first-child {
+            border-top: 0;
+        }
+
+        .item-inner {
+            border-bottom: 0.55px solid #e6e6e6!important;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .item-block:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    .logout-item {
+        .label-ios {
+            color: rgb(212, 54, 54)!important;
+        }
+        
+        text-align: center;
+    }
+
+}

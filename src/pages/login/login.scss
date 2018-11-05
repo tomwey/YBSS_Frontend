@@ -1,0 +1,57 @@
+page-login {
+    .login-box {
+        margin-top: 60px;
+        // padding: 30px 5px;
+        text-align: center;
+
+        .caption {
+            margin-bottom: 30px;
+
+            img {
+                max-width: 120px;
+                border-radius: 12px;
+            }
+
+            h2 {
+                font-size: 3rem;
+                color: #333;
+            }
+        }
+        
+    }
+
+    .login-form {
+        .item-ios {
+            background: transparent;
+            // border: 0;
+        }
+        
+        .item-inner {
+            
+            font-size: 1.8rem;
+            border-bottom: 0.55px solid #e6e6e6!important;//#c8c7cc!important;
+        }
+
+        .item-block:first-child {
+            border-top: 0;
+        }
+
+        .item-block:last-child {
+            border-bottom: 0;
+        }
+
+        
+    }
+
+    .custom-btn-bg {
+        // background: 
+        background: -webkit-linear-gradient(to right, rgb(69,122,251) , rgb(138,214,254))!important; /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(to right, rgb(69,122,251) , rgb(138,214,254))!important; /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(to right, rgb(69,122,251) , rgb(138,214,254))!important; /* Firefox 3.6 - 15 */
+        background: linear-gradient(to right, rgb(69,122,251) , rgb(138,214,254))!important; /* 标准的语法 */
+    }
+
+    .forget-password {
+        margin: 0;
+    }
+}

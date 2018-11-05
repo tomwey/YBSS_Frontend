@@ -1,0 +1,41 @@
+<!--
+  Generated template for the MyZonePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar color="navbar">
+    <ion-title>我的管辖</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let item of listData">
+      <h2 class="name">{{item.name}}</h2>
+      <ion-row>
+        <ion-col col-4>
+          <div class="stat-box">
+            <p class="label-text">实有房屋</p>
+            <p class="digit house">{{item.house_count}}</p>
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="stat-box align-center">
+            <p class="label-text">实有人口</p>
+            <p class="digit people">{{item.people_count}}</p>
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="stat-box align-right">
+            <p class="label-text">实有单位</p>
+            <p class="digit company">{{item.company_count}}</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </button>
+  </ion-list>
+</ion-content>
