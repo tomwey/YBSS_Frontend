@@ -47,7 +47,7 @@ export class MyApp {
         this.rootPage = TabsPage;
       }
 
-      this.rootPage = TabsPage;
+      // this.rootPage = TabsPage;
     })
   }
 

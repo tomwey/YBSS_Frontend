@@ -1,57 +1,39 @@
-import { Component, ViewChild } from '@angular/core';
-import { /*IonicPage, */NavController, NavParams, Content, App } from 'ionic-angular';
-// import { ApiService } from '../../provider/api-service';
-import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
-import { Users } from '../../provider/Users';
-// import { Tools } from '../../provider/Tools';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
 /**
- * Generated class for the HomePage page.
+ * Generated class for the AddressInfoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
-// @IonicPage()
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-address-info',
+  templateUrl: 'address-info.html',
 })
-export class HomePage {
+export class AddressInfoPage {
 
-  // @ViewChild('slides') slides: Slides;
-  @ViewChild(Content) content: Content;
-
+  address: any = "乡城县马家沟村3组13号";
   constructor(public navCtrl: NavController,
-    // private api: ApiService,
     private app: App,
-    private users: Users,
-    // private tools: Tools,
-    // private modalCtrl: ModalController,
-    // private alertCtrl: AlertController,
-    private iosFixed: iOSFixedScrollFreeze,
     public navParams: NavParams) {
+    if (this.navParams.data.address) {
+      this.address = this.navParams.data.address;
+    };
   }
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad HomePage');
-    this.iosFixed.fixedScrollFreeze(this.content);
+    // console.log('ionViewDidLoad AddressInfoPage');
+  }
 
+  back() {
+    this.navCtrl.pop();
   }
 
   forwardTo(section) {
     this.app.getRootNavs()[0].push(section.page, section.params);
-  }
-
-  scan() {
-    // console.log(123);
-    let n = Math.ceil(Math.random() * 10);
-    if (n % 2 === 0) {
-      this.app.getRootNavs()[0].push("AddressInfoPage");
-    } else {
-      this.app.getRootNavs()[0].push("AddressListPage");
-    }
-
   }
 
   sections: any = [
@@ -91,7 +73,12 @@ export class HomePage {
       name: '新增从业人员',
       icon: 'assets/imgs/icon_add_employer.png',
       page: 'NewEmployerPage'
-    }
+    },
+    // {
+    //   name: '下级地址',
+    //   icon: 'assets/imgs/icon_child_list.png',
+    //   page: 'AddressListPage'
+    // }
   ];
 
 }

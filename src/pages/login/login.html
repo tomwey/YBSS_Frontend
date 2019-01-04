@@ -12,29 +12,29 @@
     </ion-navbar>
   
   </ion-header> -->
-  
-  <ion-content style="background: white;">
-    <div class="login-box">
-      <div class="caption">
-        <img src="assets/imgs/logo.png" alt="一标三实">
-        <h2>一标三实警务平台</h2>
-      </div>
 
-      <ion-list class="login-form">
-        <ion-item>
-          <ion-input type="tel" [(ngModel)]="user.mobile" placeholder="请输入手机号"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input type="password" [(ngModel)]="user.password" placeholder="请输入密码"></ion-input>
-        </ion-item>
-      </ion-list>
-
-      <div padding>
-        <button ion-button block class="custom-btn-bg" (click)="doLogin();">登录</button>
-        <p class="forget-password"><button ion-button clear color="gray" (click)="forgetPassword();">忘记密码</button></p>
-      </div>
+<ion-content style="background: white;">
+  <div class="login-box">
+    <div class="caption">
+      <img src="assets/imgs/logo.png" alt="一标三实">
+      <h2>乡城县二维码APP</h2>
     </div>
-    <!-- <div class="login-box">
+
+    <ion-list class="login-form">
+      <ion-item>
+        <ion-input type="tel" [(ngModel)]="user.mobile" placeholder="请输入手机号"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" [(ngModel)]="user.password" placeholder="请输入密码"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div padding>
+      <button ion-button block class="custom-btn-bg" (click)="doLogin();">登录</button>
+      <p class="forget-password"><button ion-button clear color="gray" (click)="forgetPassword();">忘记密码</button></p>
+    </div>
+  </div>
+  <!-- <div class="login-box">
       <ion-card>
         <ion-card-header class="slogan">小么兼职登录</ion-card-header>
             <ion-item class="custom-item">
@@ -55,6 +55,5 @@
       </ion-card>
       
     </div> -->
-  
-  </ion-content>
 
+</ion-content>
