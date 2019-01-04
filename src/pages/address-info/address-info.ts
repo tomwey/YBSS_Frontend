@@ -33,6 +33,10 @@ export class AddressInfoPage {
   }
 
   forwardTo(section) {
+    if (section.page === "OperationHistoryPage" ||
+      section.page === "HouseDetailPage") {
+      section.params = { address: this.address };
+    }
     this.app.getRootNavs()[0].push(section.page, section.params);
   }
 
@@ -42,6 +46,11 @@ export class AddressInfoPage {
     //   icon: 'assets/imgs/icon_house.png',
     //   page: ''
     // },
+    {
+      name: '查看地址详情',
+      icon: 'assets/imgs/icon_view_detail.png',
+      page: 'HouseDetailPage'
+    },
     {
       name: '新增实有人',
       icon: 'assets/imgs/icon_add_person.png',

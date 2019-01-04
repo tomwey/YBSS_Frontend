@@ -19,8 +19,8 @@
 
 <ion-content style="background: rgb(247,247,247);">
   <div class="address-bg">
-    <h2>西大街1号</h2>
-    <p>四川省成都市青羊区</p>
+    <h2 text-wrap>{{address}}</h2>
+    <!-- <p>四川省成都市青羊区</p> -->
   </div>
   <div class="info-box">
     <ion-card>
@@ -29,44 +29,44 @@
         <button ion-button item-right>编辑</button>
       </ion-item>
       <ion-card-content>
-          <table class="table">
-              <tr>
-                <td class="label">房屋用途</td>
-                <td class="value">居住</td>
-                <td class="label">房屋类型</td>
-                <td class="value">单元楼</td>
-              </tr>
-              <tr>                
-                
-                <td class="label">结构类型</td>
-                <td class="value">砖混</td>
-                <td class="label">小区名称</td>
-                <td class="value">莲台寺公租房</td>
-              </tr>
-              <tr>
-                
-                <td class="label">面积</td>
-                <td class="value">-- 平方米(㎡)</td>
-                <td class="label">房间数(个)</td>
-                <td class="value">--</td>
-              </tr>
-              <tr>
-                  
-                <td class="label">管理等级</td>
-                <td class="value">常规管理类（C）</td>
-                <td class="label">使用类型</td>
-                <td class="value">一般租借</td>
-              </tr>
-              <tr>
-                
-                <td class="label">租用类型</td>
-                <td class="value">整租房</td>
-                <td class="label"></td>
-                <td class="value"></td>
-              </tr>
-            </table>
+        <table class="table">
+          <tr>
+            <td class="label">房屋用途</td>
+            <td class="value">居住</td>
+            <td class="label">房屋类型</td>
+            <td class="value">单元楼</td>
+          </tr>
+          <tr>
+
+            <td class="label">结构类型</td>
+            <td class="value">砖混</td>
+            <td class="label">小区名称</td>
+            <td class="value">莲台寺公租房</td>
+          </tr>
+          <tr>
+
+            <td class="label">面积</td>
+            <td class="value">-- 平方米(㎡)</td>
+            <td class="label">房间数(个)</td>
+            <td class="value">--</td>
+          </tr>
+          <tr>
+
+            <td class="label">管理等级</td>
+            <td class="value">常规管理类（C）</td>
+            <td class="label">使用类型</td>
+            <td class="value">一般租借</td>
+          </tr>
+          <tr>
+
+            <td class="label">租用类型</td>
+            <td class="value">整租房</td>
+            <td class="label"></td>
+            <td class="value"></td>
+          </tr>
+        </table>
       </ion-card-content>
-      
+
     </ion-card>
     <ion-card>
       <ion-item>
@@ -76,7 +76,9 @@
       <ion-list>
         <ion-item>
           <h2 text-wrap>2018年6月13日社区民警林薇走访核实，该房屋暂时无人居中，予以备注</h2>
-          <p><ion-badge>无人居住</ion-badge>&nbsp;<ion-badge>无异常情况</ion-badge></p>
+          <p>
+            <ion-badge>无人居住</ion-badge>&nbsp;<ion-badge>无异常情况</ion-badge>
+          </p>
           <p>检查时间: 2018-06-13</p>
           <ion-note item-right>
             <ion-badge color="danger">已注销</ion-badge>
@@ -84,7 +86,9 @@
         </ion-item>
         <ion-item>
           <h2 text-wrap>2018年6月13日社区民警林薇走访核实，该房屋暂时无人居中，予以备注</h2>
-          <p><ion-badge>无人居住</ion-badge>&nbsp;<ion-badge>无异常情况</ion-badge></p>
+          <p>
+            <ion-badge>无人居住</ion-badge>&nbsp;<ion-badge>无异常情况</ion-badge>
+          </p>
           <p>检查时间: 2018-06-13</p>
           <ion-note item-right>
             <ion-badge color="gray">未注销</ion-badge>
@@ -120,8 +124,8 @@
         操作日志
       </ion-item>
       <div style="text-align: center;padding: 20px;color: #999;">
-          暂无操作日志
-        </div>
+        暂无操作日志
+      </div>
     </ion-card>
   </div>
 </ion-content>
