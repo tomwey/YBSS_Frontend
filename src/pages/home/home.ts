@@ -4,6 +4,7 @@ import { /*IonicPage, */NavController, NavParams, Content, App } from 'ionic-ang
 import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 import { Users } from '../../provider/Users';
 import { ApiService } from '../../provider/api-service';
+import { ComponentsModule } from '../../components/components.module';
 // import { Tools } from '../../provider/Tools';
 
 /**
@@ -23,6 +24,7 @@ export class HomePage {
   // @ViewChild('slides') slides: Slides;
   @ViewChild(Content) content: Content;
 
+  addresses: any = [];
   constructor(public navCtrl: NavController,
     // private api: ApiService,
     private app: App,
@@ -39,7 +41,8 @@ export class HomePage {
     // console.log('ionViewDidLoad HomePage');
     this.iosFixed.fixedScrollFreeze(this.content);
     this.api.GetLocalData("assets/configs/addresses.json", (data) => {
-      console.log(data);
+      // console.log(data);
+      this.addresses = data;
     });
   }
 
@@ -49,13 +52,24 @@ export class HomePage {
 
   scan() {
     // console.log(123);
-    let n = Math.ceil(Math.random() * 10);
-    if (n % 2 === 0) {
-      this.app.getRootNavs()[0].push("AddressInfoPage");
-    } else {
-      this.app.getRootNavs()[0].push("AddressListPage");
+    let index = Math.floor(Math.random() * 100);
+    index = this.addresses.length - 1;//index % this.addresses.length;
+    console.log(index);
+    if (index < this.addresses.length && index >= 0) {
+      let address = this.addresses[index];
+      console.log(address);
+      if (!address.children) {
+        this.app.getRootNavs()[0].push("AddressInfoPage", address);
+      } else {
+        this.app.getRootNavs()[0].push("AddressListPage", address);
+      }
     }
-
+    // let n = Math.ceil(Math.random() * 10);
+    // if (n % 2 === 0) {
+    //   this.app.getRootNavs()[0].push("AddressInfoPage");
+    // } else {
+    //   this.app.getRootNavs()[0].push("AddressListPage");
+    // }
   }
 
   sections: any = [

@@ -6,30 +6,38 @@
             {
                 "ID": "2",
                 "name": "2栋",
+                "people": "105",
+                "company": "30",
                 "units": [
                     {
                         "name": "1单元",
                         "ID": "1",
                         "rooms": [
                             {
-                                "ID": "201",
+                                "ID": "100001201",
                                 "name": "201号",
                                 "usetypeid": "1",
                                 "usetypename": "实有房屋自住",
                                 "yt_type": "自住",
-                                "_type": "一般住房"
+                                "_type": "一般住房",
+                                "people": "3",
+                                "company": "0"
                             },
                             {
-                                "ID": "202",
+                                "ID": "100001202",
                                 "name": "202号",
                                 "usetypeid": "2",
-                                "usetypename": "实有房屋商用"
+                                "usetypename": "实有房屋商用",
+                                "people": "0",
+                                "company": "1"
                             },
                             {
-                                "ID": "203",
+                                "ID": "100001203",
                                 "name": "203号",
                                 "usetypeid": "3",
-                                "usetypename": "实有房屋商住"
+                                "usetypename": "实有房屋商住",
+                                "people": "3",
+                                "company": "1"
                             }
                         ]
                     },
@@ -38,22 +46,98 @@
                         "ID": "2",
                         "rooms": [
                             {
-                                "ID": "301",
+                                "ID": "100001301",
                                 "name": "301号",
                                 "usetypeid": "1",
-                                "usetypename": "实有房屋自住"
+                                "usetypename": "实有房屋自住",
+                                "people": "3",
+                                "company": "0"
                             },
                             {
-                                "ID": "302",
+                                "ID": "100001302",
                                 "name": "302号",
                                 "usetypeid": "2",
-                                "usetypename": "实有房屋商用"
+                                "usetypename": "实有房屋商用",
+                                "people": "3",
+                                "company": "0"
                             },
                             {
-                                "ID": "303",
+                                "ID": "100001303",
                                 "name": "303号",
                                 "usetypeid": "3",
-                                "usetypename": "实有房屋商住"
+                                "usetypename": "实有房屋商住",
+                                "people": "3",
+                                "company": "0"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "ID": "3",
+                "name": "3栋",
+                "people": "95",
+                "company": "130",
+                "units": [
+                    {
+                        "name": "1单元",
+                        "ID": "1",
+                        "rooms": [
+                            {
+                                "ID": "100401201",
+                                "name": "201号",
+                                "usetypeid": "1",
+                                "usetypename": "实有房屋自住",
+                                "yt_type": "自住",
+                                "_type": "一般住房",
+                                "people": "3",
+                                "company": "0"
+                            },
+                            {
+                                "ID": "100401202",
+                                "name": "202号",
+                                "usetypeid": "2",
+                                "usetypename": "实有房屋商用",
+                                "people": "3",
+                                "company": "0"
+                            },
+                            {
+                                "ID": "100401203",
+                                "name": "203号",
+                                "usetypeid": "3",
+                                "usetypename": "实有房屋商住",
+                                "people": "3",
+                                "company": "0"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "2单元",
+                        "ID": "2",
+                        "rooms": [
+                            {
+                                "ID": "104001301",
+                                "name": "301号",
+                                "usetypeid": "1",
+                                "usetypename": "实有房屋自住",
+                                "people": "3",
+                                "company": "0"
+                            },
+                            {
+                                "ID": "104001302",
+                                "name": "302号",
+                                "usetypeid": "2",
+                                "usetypename": "实有房屋商用",
+                                "people": "3",
+                                "company": "0"
+                            },
+                            {
+                                "ID": "104001303",
+                                "name": "303号",
+                                "usetypeid": "3",
+                                "usetypename": "实有房屋商住",
+                                "people": "3",
+                                "company": "0"
                             }
                         ]
                     }
@@ -64,8 +148,10 @@
     {
         "ID": "100002",
         "name": "乡城县马家村3组3号",
+        "people": "3",
+        "company": "0",
         "room": {
-            "ID": "3",
+            "ID": "1000023",
             "name": "3号",
             "usetypeid": "1",
             "usetypename": "实有房屋自住"
@@ -74,8 +160,10 @@
     {
         "ID": "100003",
         "name": "乡城县马家村3组5号",
+        "people": "3",
+        "company": "0",
         "room": {
-            "ID": "5",
+            "ID": "1000035",
             "name": "5号",
             "usetypeid": "2",
             "usetypename": "实有房屋商用"
@@ -84,8 +172,10 @@
     {
         "ID": "100004",
         "name": "乡城县马家村3组6号",
+        "people": "3",
+        "company": "0",
         "room": {
-            "ID": "3-3",
+            "ID": "1000046",
             "name": "6号",
             "usetypeid": "3",
             "usetypename": "实有房屋商住"
