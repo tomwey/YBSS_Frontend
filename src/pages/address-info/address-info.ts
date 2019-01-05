@@ -132,7 +132,13 @@ export class AddressInfoPage {
     //   section.page === "HouseDetailPage") {
     //   section.params = { address: this.address };
     // }
-    this.app.getRootNavs()[0].push(section.page, this.address);
+    if (section.page === "NewDailyCheckPage") {
+      section.params["address"] = this.address;
+      this.app.getRootNavs()[0].push(section.page, section.params);
+    } else {
+      this.app.getRootNavs()[0].push(section.page, this.address);
+    }
+
   }
 
   sections: any = [

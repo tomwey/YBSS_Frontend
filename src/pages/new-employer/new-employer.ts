@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Store } from '../../provider/Store';
+import { Tools } from '../../provider/Tools';
 
 /**
  * Generated class for the NewEmployerPage page.
@@ -14,8 +16,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'new-employer.html',
 })
 export class NewEmployerPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  address: any = null;
+  constructor(public navCtrl: NavController,
+    private store: Store,
+    private tools: Tools,
+    public navParams: NavParams) {
+    this.address = this.navParams.data;
   }
 
   ionViewDidLoad() {
@@ -35,7 +41,15 @@ export class NewEmployerPage {
   }
 
   save() {
-    console.log(this.controls);
+    // console.log(this.controls);
+    let obj = {};
+    this.controls.forEach(control => {
+      obj[control.ID] = control.value || "";
+    });
+    this.store.addPeople(this.address.ID, "2", obj, () => {
+      this.tools.showToast("录入成功");
+      this.navCtrl.pop();
+    });
   }
 
   selectOptionsData: any = {

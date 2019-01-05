@@ -2,9 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { /*IonicPage, */NavController, NavParams, Content, App } from 'ionic-angular';
 // import { ApiService } from '../../provider/api-service';
 import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
-import { Users } from '../../provider/Users';
+// import { Users } from '../../provider/Users';
 import { ApiService } from '../../provider/api-service';
-import { ComponentsModule } from '../../components/components.module';
+// import { ComponentsModule } from '../../components/components.module';
 // import { Tools } from '../../provider/Tools';
 
 /**
@@ -28,7 +28,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     // private api: ApiService,
     private app: App,
-    private users: Users,
+    // private users: Users,
     // private tools: Tools,
     // private modalCtrl: ModalController,
     // private alertCtrl: AlertController,

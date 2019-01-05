@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Store } from '../../provider/Store';
+import { Tools } from '../../provider/Tools';
 
 /**
  * Generated class for the NewDailyCheckPage page.
@@ -17,8 +19,13 @@ export class NewDailyCheckPage {
 
   selectOptionsData: any = {};
   controls: any = [];
+  address: any = null;
+  constructor(public navCtrl: NavController,
+    private store: Store,
+    private tools: Tools,
+    public navParams: NavParams) {
+    this.address = this.navParams.data.address;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
     if (this.navParams.data && this.navParams.data.type == '1') {
       // 房屋日常检查
       this.controls = [
@@ -146,7 +153,15 @@ export class NewDailyCheckPage {
   }
 
   save() {
-    console.log(this.controls);
+    // console.log(this.controls);
+    let obj = {};
+    this.controls.forEach(control => {
+      obj[control.ID] = control.value || "";
+    });
+    this.store.addCheck(this.address.ID, obj, () => {
+      this.tools.showToast("录入成功");
+      this.navCtrl.pop();
+    });
   }
 
 }

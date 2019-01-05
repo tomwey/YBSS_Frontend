@@ -16,11 +16,12 @@ import { Tools } from '../../provider/Tools';
   templateUrl: 'new-people.html',
 })
 export class NewPeoplePage {
-
+  address: any = null;
   constructor(public navCtrl: NavController,
     private store: Store,
     private tools: Tools,
     public navParams: NavParams) {
+    this.address = this.navParams.data;
   }
 
   ionViewDidLoad() {
@@ -45,11 +46,15 @@ export class NewPeoplePage {
 
   save() {
     // console.log(this.controls);
-    let obj = { state: '新增' };
+    let obj = {};
     this.controls.forEach(control => {
       obj[control.ID] = control.value || "";
     });
-    this.store.addItem(obj, "peoples", () => {
+    // this.store.addItem(obj, "peoples", () => {
+    //   this.tools.showToast("录入成功");
+    //   this.navCtrl.pop();
+    // });
+    this.store.addPeople(this.address.ID, "1", obj, () => {
       this.tools.showToast("录入成功");
       this.navCtrl.pop();
     });

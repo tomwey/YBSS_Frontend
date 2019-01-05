@@ -13,25 +13,11 @@
 </ion-header>
 
 <ion-content style="background: rgb(247,247,247);">
-  <h1 class="address-title" text-wrap>{{address}}</h1>
+  <div class="empty-error-box" *ngIf="!!error">{{error}}</div>
   <ion-list>
-    <ion-card *ngFor="let item of data" class="custom-card">
-      <div class="line line-{{item.type}}"></div>
-      <ion-item>
-        <!-- <ion-card-content> -->
-        <h2 text-wrap>{{item.name || item.action}}
-          <span *ngIf="item.company">【{{item.company}}】</span>
-        </h2>
-        <!-- <p class="address" *ngIf="item.type === 30">公司名称: {{item.company}}</p> -->
-
-        <p class="time">{{item.time}}</p>
-        <div class="right-content" item-right>
-          <ion-badge class="line-{{item.type}} custom-badge">{{item.action}}</ion-badge>
-          <div class="state" [class.delete]="item.action_name === '删除'" [class.add]="item.action_name === '新增'"
-            [class.block]="item.action_name === '注销'">{{item.action_name}}</div>
-        </div>
-      </ion-item>
-      <!-- </ion-card-content> -->
-    </ion-card>
+    <ion-item *ngFor="let log of data">
+      <h2>{{log.name}}</h2>
+      <p>{{log.time}}</p>
+    </ion-item>
   </ion-list>
 </ion-content>
