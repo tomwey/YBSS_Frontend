@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Store } from '../../provider/Store';
+import { Tools } from '../../provider/Tools';
 
 /**
  * Generated class for the NewPeoplePage page.
@@ -15,11 +17,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NewPeoplePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    private store: Store,
+    private tools: Tools,
+    public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewPeoplePage');
+
+    this.store.getItems("peoples", (arr) => {
+      console.log(arr);
+    });
   }
 
   controlSelect(control) {
@@ -35,7 +44,15 @@ export class NewPeoplePage {
   }
 
   save() {
-    console.log(this.controls);
+    // console.log(this.controls);
+    let obj = { state: '新增' };
+    this.controls.forEach(control => {
+      obj[control.ID] = control.value || "";
+    });
+    this.store.addItem(obj, "peoples", () => {
+      this.tools.showToast("录入成功");
+      this.navCtrl.pop();
+    });
   }
 
   selectOptionsData: any = {

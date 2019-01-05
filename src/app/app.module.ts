@@ -10,7 +10,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
-import { HomePage } from '../pages/home/home'; 
+import { HomePage } from '../pages/home/home';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,6 +24,7 @@ import { iOSFixedScrollFreeze } from '../provider/iOSFixedScrollFreeze';
 import { PipesModule } from '../pipes/pipes.module';
 import { MyZonePage } from '../pages/my-zone/my-zone';
 import { SyncPage } from '../pages/sync/sync';
+import { Store } from '../provider/Store';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { SyncPage } from '../pages/sync/sync';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     Utils,
     // APIs,
     Tools,
@@ -67,6 +68,7 @@ import { SyncPage } from '../pages/sync/sync';
     ApiService,
     AppManager,
     iOSFixedScrollFreeze,
+    Store,
   ]
 })
-export class AppModule {}
+export class AppModule { }
