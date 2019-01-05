@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the AddressDetailPage page.
@@ -16,13 +16,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class HouseDetailPage {
 
   address: any = "--";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    private modalCtrl: ModalController,
+    public navParams: NavParams) {
     this.address = this.navParams.data.address;
   }
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad AddressDetailPage');
   }
+
+  addDailyCheck() {
+    // let modal = this.modalCtrl.create("NewDailyCheckPage")
+    this.navCtrl.push("NewDailyCheckPage");
+  }
+
+  addPeople() {
+    this.navCtrl.push("NewPeoplePage");
+  }
+
+  editHouse() {
+    this.navCtrl.push("HouseEditPage");
+  }
+
+
 
   goHome() {
     this.navCtrl.popToRoot();

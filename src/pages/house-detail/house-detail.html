@@ -26,7 +26,7 @@
     <ion-card>
       <ion-item>
         基本信息
-        <button ion-button item-right>编辑</button>
+        <button ion-button item-right (click)="editHouse();">编辑</button>
       </ion-item>
       <ion-card-content>
         <table class="table">
@@ -71,7 +71,7 @@
     <ion-card>
       <ion-item>
         日常检查
-        <button ion-button item-right>新增</button>
+        <button ion-button item-right (click)="addDailyCheck();">新增</button>
       </ion-item>
       <ion-list>
         <ion-item>
@@ -99,7 +99,7 @@
     <ion-card>
       <ion-item>
         实有人口
-        <button ion-button item-right>新增</button>
+        <button ion-button item-right (click)="addPeople();">新增</button>
       </ion-item>
       <ion-list>
         <ion-item>

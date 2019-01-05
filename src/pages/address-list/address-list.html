@@ -21,9 +21,33 @@
     <h1 text-wrap>{{address}}</h1>
   </div>
 
-  <ion-list>
-    <button ion-item *ngFor="let item of addresses" (click)="openItem(item);">
-      {{item.name}}
-    </button>
-  </ion-list>
+  <ion-toolbar color="white" *ngIf="units.length > 0">
+    <ion-segment [(ngModel)]="unit" mode="md">
+      <ion-segment-button value="{{u.value}}" *ngFor="let u of units">
+        {{u.label}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <div class="sections">
+    <ion-row>
+      <ion-col col-6 *ngFor="let item of addresses">
+        <div class="section" tappable (click)="selectAddress(item);">
+          <h2 class="title">{{item.name}}</h2>
+          <div class="stat-wrap">
+            <p class="stat left">
+              <span class="digit">{{item.people}}</span>
+              <br>
+              <span class="label">实有人口</span>
+            </p>
+            <p class="stat right">
+              <span class="digit">{{item.company}}</span>
+              <br>
+              <span class="label">实有单位</span>
+            </p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

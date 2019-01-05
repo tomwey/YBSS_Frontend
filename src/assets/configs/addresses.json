@@ -1,0 +1,94 @@
+[
+    {
+        "ID": "100001",
+        "name": "乡城县马家村3组23号",
+        "children": [
+            {
+                "ID": "2",
+                "name": "2栋",
+                "units": [
+                    {
+                        "name": "1单元",
+                        "ID": "1",
+                        "rooms": [
+                            {
+                                "ID": "201",
+                                "name": "201号",
+                                "usetypeid": "1",
+                                "usetypename": "实有房屋自住",
+                                "yt_type": "自住",
+                                "_type": "一般住房"
+                            },
+                            {
+                                "ID": "202",
+                                "name": "202号",
+                                "usetypeid": "2",
+                                "usetypename": "实有房屋商用"
+                            },
+                            {
+                                "ID": "203",
+                                "name": "203号",
+                                "usetypeid": "3",
+                                "usetypename": "实有房屋商住"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "2单元",
+                        "ID": "2",
+                        "rooms": [
+                            {
+                                "ID": "301",
+                                "name": "301号",
+                                "usetypeid": "1",
+                                "usetypename": "实有房屋自住"
+                            },
+                            {
+                                "ID": "302",
+                                "name": "302号",
+                                "usetypeid": "2",
+                                "usetypename": "实有房屋商用"
+                            },
+                            {
+                                "ID": "303",
+                                "name": "303号",
+                                "usetypeid": "3",
+                                "usetypename": "实有房屋商住"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "ID": "100002",
+        "name": "乡城县马家村3组3号",
+        "room": {
+            "ID": "3",
+            "name": "3号",
+            "usetypeid": "1",
+            "usetypename": "实有房屋自住"
+        }
+    },
+    {
+        "ID": "100003",
+        "name": "乡城县马家村3组5号",
+        "room": {
+            "ID": "5",
+            "name": "5号",
+            "usetypeid": "2",
+            "usetypename": "实有房屋商用"
+        }
+    },
+    {
+        "ID": "100004",
+        "name": "乡城县马家村3组6号",
+        "room": {
+            "ID": "3-3",
+            "name": "6号",
+            "usetypeid": "3",
+            "usetypename": "实有房屋商住"
+        }
+    }
+]

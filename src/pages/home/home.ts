@@ -3,6 +3,7 @@ import { /*IonicPage, */NavController, NavParams, Content, App } from 'ionic-ang
 // import { ApiService } from '../../provider/api-service';
 import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 import { Users } from '../../provider/Users';
+import { ApiService } from '../../provider/api-service';
 // import { Tools } from '../../provider/Tools';
 
 /**
@@ -29,6 +30,7 @@ export class HomePage {
     // private tools: Tools,
     // private modalCtrl: ModalController,
     // private alertCtrl: AlertController,
+    private api: ApiService,
     private iosFixed: iOSFixedScrollFreeze,
     public navParams: NavParams) {
   }
@@ -36,7 +38,9 @@ export class HomePage {
   ionViewDidLoad() {
     // console.log('ionViewDidLoad HomePage');
     this.iosFixed.fixedScrollFreeze(this.content);
-
+    this.api.GetLocalData("assets/configs/addresses.json", (data) => {
+      console.log(data);
+    });
   }
 
   forwardTo(section) {

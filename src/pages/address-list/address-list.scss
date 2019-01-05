@@ -1,4 +1,7 @@
 page-address-list {
+    .content {
+        background: #f7f7f7;
+    }
     .caption {
         background: -webkit-linear-gradient(#56b1f9, #439cf8); /* Safari 5.1 - 6.0 */
         background: -o-linear-gradient( #56b1f9, #439cf8); /* Opera 11.1 - 12.0 */
@@ -24,6 +27,53 @@ page-address-list {
             left: 0;
             ion-icon {
                 font-size: 36px !important;
+            }
+            
+        }
+    }
+
+    .sections {
+        ion-row,ion-col {
+            // margin: 0;
+            padding: 8px;
+            // text-align: center;
+        }
+        .section {
+            padding: 20px 10px;
+            background: #fff;
+            border-radius: 8px;
+
+            h2,p {
+                margin: 0;
+                padding: 0;
+            }
+            .title {
+                text-align: center;
+                margin-bottom: 10px;
+                font-size: 20px;
+                color: #333;
+                // border-bottom: 0.5px solid #f2f2f2;
+            }
+            .stat-wrap {
+                display: flex;
+                .stat {
+                    // &.left {
+                    //     text-align: left;
+                    // }
+                    // &.right {
+                    //     text-align: right;
+                    // }
+                    flex: 1;
+                    font-size: 12px;
+                    color: #999;
+                    text-align: center;
+                    .digit {
+                        font-size: 18px;
+                        font-weight: 500;
+                        padding: 0 5px;
+                        color: color($colors,primary);
+                    }
+                }
             }
             
         }

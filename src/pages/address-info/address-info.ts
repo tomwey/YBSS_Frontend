@@ -67,17 +67,17 @@ export class AddressInfoPage {
       page: 'OperationHistoryPage'
     },
     {
-      name: '房屋日常检查',
+      name: '日常检查',
       icon: 'assets/imgs/icon_daily_check.png',
       page: 'NewDailyCheckPage',
       params: { type: 1 }
     },
-    {
-      name: '单位日常检查',
-      icon: 'assets/imgs/icon_daily_check.png',
-      page: 'NewDailyCheckPage',
-      params: { type: 2 }
-    },
+    // {
+    //   name: '单位日常检查',
+    //   icon: 'assets/imgs/icon_daily_check.png',
+    //   page: 'NewDailyCheckPage',
+    //   params: { type: 2 }
+    // },
     {
       name: '新增从业人员',
       icon: 'assets/imgs/icon_add_employer.png',
