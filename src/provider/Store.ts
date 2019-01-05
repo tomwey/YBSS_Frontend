@@ -34,14 +34,14 @@ export class Store {
             }
             this.store.set(key, JSON.stringify(arr))
                 .then(() => {
-                    if (callback) {
-                        callback();
-                    }
-
                     this.addItem({
                         name: "注销" + (type == 1 ? "实有人口" : "从业人员"),
                         time: (new Date().getTime())
-                    }, addrID + ":" + "log", null);
+                    }, addrID + ":" + "log", () => {
+                        if (callback) {
+                            callback();
+                        }
+                    });
                 });
         });
     }
@@ -73,14 +73,16 @@ export class Store {
             }
             this.store.set(key, JSON.stringify(arr))
                 .then(() => {
-                    if (callback) {
-                        callback();
-                    }
+
 
                     this.addItem({
                         name: "注销日常检查",
                         time: (new Date().getTime())
-                    }, addrID + ":" + "log", null);
+                    }, addrID + ":" + "log", () => {
+                        if (callback) {
+                            callback();
+                        }
+                    });
                 });
         });
     }

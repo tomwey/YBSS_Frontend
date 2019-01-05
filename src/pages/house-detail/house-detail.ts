@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Store } from '../../provider/Store';
 import { Utils } from '../../provider/Utils';
 
@@ -27,6 +27,7 @@ export class HouseDetailPage {
 
   constructor(public navCtrl: NavController,
     private store: Store,
+    private alertCtrl: AlertController,
     public navParams: NavParams) {
     this.address = this.navParams.data;
     this.room = this.address.room || this.address;
@@ -65,6 +66,51 @@ export class HouseDetailPage {
 
   addPeople() {
     this.navCtrl.push("NewPeoplePage", this.address);
+  }
+
+  removeCheck(check) {
+    this.showAlert(() => {
+      this.store.removeCheck(this.address.ID, check, () => {
+        this.ionViewWillEnter();
+      });
+    });
+  }
+
+  removePeople1(man) {
+    this.showAlert(() => {
+      this.store.removePeople(this.address.ID, "1", man, () => {
+        this.ionViewWillEnter();
+      });
+    });
+  }
+
+  removePeople2(man) {
+    this.showAlert(() => {
+      this.store.removePeople(this.address.ID, "2", man, () => {
+        this.ionViewWillEnter();
+      });
+    });
+  }
+
+  showAlert(cb) {
+    this.alertCtrl.create({
+      title: "注销提示",
+      subTitle: "您确定要注销吗？",
+      buttons: [
+        {
+          role: "Cancel",
+          text: "取消"
+        },
+        {
+          text: "确定",
+          handler: () => {
+            if (cb) {
+              cb();
+            }
+          }
+        }
+      ]
+    }).present();
   }
 
   addPeople2() {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Store } from '../../provider/Store';
+import { Utils } from '../../provider/Utils';
 
 /**
  * Generated class for the OperationHistoryPage page.
@@ -71,6 +72,10 @@ export class OperationHistoryPage {
       //   action_name: "新增"
       // },
     ];
+  }
+
+  formatDate(time) {
+    return Utils.dateFormat(new Date(time), "yyyy-MM-dd HH:mm:ss");
   }
 
   ionViewDidLoad() {

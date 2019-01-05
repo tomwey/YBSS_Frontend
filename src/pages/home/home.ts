@@ -53,7 +53,7 @@ export class HomePage {
   scan() {
     // console.log(123);
     let index = Math.floor(Math.random() * 100);
-    index = this.addresses.length - 1;//index % this.addresses.length;
+    index = index % this.addresses.length;
     // console.log(index);
     if (index < this.addresses.length && index >= 0) {
       let address = this.addresses[index];

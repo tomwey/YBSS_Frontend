@@ -77,7 +77,8 @@
         <ion-item *ngFor="let check of checks" class="custom-item">
           <h2 text-wrap>{{check.memo}}</h2>
           <p>检查日期: {{check.check_date}}</p>
-          <button ion-button item-right color="danger" *ngIf="check._state == 1">注销</button>
+          <button ion-button item-right (click)="removeCheck(check);" color="danger" *ngIf="check._state == 1">注销</button>
+          <ion-note item-right *ngIf="check._state == 0">已注销</ion-note>
         </ion-item>
         <!-- <ion-item>
           <h2 text-wrap>2018年6月13日社区民警林薇走访核实，该房屋暂时无人居中，予以备注</h2>
@@ -103,7 +104,8 @@
         <ion-item *ngFor="let man of people1" class="custom-item">
           <h2>{{man.name}}</h2>
           <p>证件号码: {{man.card_no}}</p>
-          <button ion-button item-right color="danger" *ngIf="man._state == 1">注销</button>
+          <ion-note item-right *ngIf="man._state == 0">已注销</ion-note>
+          <button ion-button item-right (click)="removePeople1(man);" color="danger" *ngIf="man._state == 1">注销</button>
         </ion-item>
         <!-- <ion-item>
           张三&emsp;511323199012093454
@@ -125,7 +127,8 @@
         <ion-item *ngFor="let man of people2" class="custom-item">
           <h2>{{man.name}}</h2>
           <p>证件号码: {{man.card_no}}</p>
-          <button ion-button item-right color="danger" *ngIf="man._state == 1">注销</button>
+          <ion-note item-right *ngIf="man._state == 0">已注销</ion-note>
+          <button ion-button item-right (click)="removePeople2(man);" color="danger" *ngIf="man._state == 1">注销</button>
         </ion-item>
         <!-- <ion-item>
           张三&emsp;511323199012093454
