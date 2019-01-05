@@ -96,10 +96,24 @@
         </ion-item>
       </ion-list>
     </ion-card>
-    <ion-card>
+    <ion-card *ngIf="room.usetypeid !== '2'">
       <ion-item>
-        实有人口
+        {{room.usetypeid === "1" ? "实有人口" : "居住人员"}}
         <button ion-button item-right (click)="addPeople();">新增</button>
+      </ion-item>
+      <ion-list>
+        <ion-item>
+          张三&emsp;511323199012093454
+        </ion-item>
+        <ion-item>
+          李四&emsp;511323199012093454
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    <ion-card *ngIf="room.usetypeid !== '1'">
+      <ion-item>
+        从业人员
+        <button ion-button item-right (click)="addPeople2();">新增</button>
       </ion-item>
       <ion-list>
         <ion-item>

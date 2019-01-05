@@ -54,22 +54,16 @@ export class HomePage {
     // console.log(123);
     let index = Math.floor(Math.random() * 100);
     index = this.addresses.length - 1;//index % this.addresses.length;
-    console.log(index);
+    // console.log(index);
     if (index < this.addresses.length && index >= 0) {
       let address = this.addresses[index];
-      console.log(address);
+      // console.log(address);
       if (!address.children) {
         this.app.getRootNavs()[0].push("AddressInfoPage", address);
       } else {
         this.app.getRootNavs()[0].push("AddressListPage", address);
       }
     }
-    // let n = Math.ceil(Math.random() * 10);
-    // if (n % 2 === 0) {
-    //   this.app.getRootNavs()[0].push("AddressInfoPage");
-    // } else {
-    //   this.app.getRootNavs()[0].push("AddressListPage");
-    // }
   }
 
   sections: any = [

@@ -22,7 +22,7 @@ export class HouseDetailPage {
     public navParams: NavParams) {
     this.address = this.navParams.data;
     this.room = this.address.room || this.address;
-    // console.log(this.address);
+    console.log(this.room);
   }
 
   ionViewDidLoad() {
@@ -35,7 +35,11 @@ export class HouseDetailPage {
   }
 
   addPeople() {
-    this.navCtrl.push("NewPeoplePage");
+    this.navCtrl.push("NewPeoplePage", this.address);
+  }
+
+  addPeople2() {
+    this.navCtrl.push("NewEmployerPage", this.address);
   }
 
   editHouse() {

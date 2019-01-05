@@ -57,11 +57,11 @@ export class AddressInfoPage {
           icon: 'assets/imgs/icon_view_detail.png',
           page: 'HouseDetailPage'
         },
-        {
-          name: '新增实有单位',
-          icon: 'assets/imgs/icon_add_company.png',
-          page: 'NewCompanyPage'
-        },
+        // {
+        //   name: '新增实有单位',
+        //   icon: 'assets/imgs/icon_add_company.png',
+        //   page: 'NewCompanyPage'
+        // },
         {
           name: '新增从业人员',
           icon: 'assets/imgs/icon_add_employer.png',
@@ -88,11 +88,11 @@ export class AddressInfoPage {
           icon: 'assets/imgs/icon_view_detail.png',
           page: 'HouseDetailPage'
         },
-        {
-          name: '新增实有单位',
-          icon: 'assets/imgs/icon_add_company.png',
-          page: 'NewCompanyPage'
-        },
+        // {
+        //   name: '新增实有单位',
+        //   icon: 'assets/imgs/icon_add_company.png',
+        //   page: 'NewCompanyPage'
+        // },
         {
           name: '新增居住人员',
           icon: 'assets/imgs/icon_add_person.png',
