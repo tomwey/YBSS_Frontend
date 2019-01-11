@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { Store } from '../../provider/Store';
+// import { Store } from '../../provider/Store';
 import { Utils } from '../../provider/Utils';
 
 /**
@@ -17,47 +17,98 @@ import { Utils } from '../../provider/Utils';
 })
 export class HouseDetailPage {
 
-  address: any = null;
-  room: any = null;
+  house: any = {};
 
   checks: any = [];
+  people: any = [];
+  employees: any = [];
   logs: any = [];
-  people1: any = [];
-  people2: any = [];
+
+  oper_type = "1";
+  oper_types: any = [];
 
   constructor(public navCtrl: NavController,
-    private store: Store,
+    // private store: Store,
     private alertCtrl: AlertController,
     public navParams: NavParams) {
-    this.address = this.navParams.data;
-    this.room = this.address.room || this.address;
-    console.log(this.room);
+    this.house = this.navParams.data;
+
+    this.prepareMenus();
   }
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad AddressDetailPage');
   }
 
-  ionViewWillEnter() {
-    this.store.getChecks(this.address.ID, (arr) => {
-      this.checks = arr;
-    });
-    this.store.getLogs(this.address.ID, (arr) => {
-      this.logs = arr;
-    });
+  segmentChanged(ev) {
 
-    this.store.getPeople(this.address.ID, "1", (arr) => {
-      this.people1 = arr;
-    });
+  }
 
-    this.store.getPeople(this.address.ID, "2", (arr) => {
-      this.people2 = arr;
-    });
+  prepareMenus() {
+    if (this.house.house_use === "居住") {
+      this.oper_types = [
+
+        {
+          ID: "1",
+          name: "产权人信息"
+        },
+        {
+          ID: "2",
+          name: "实有人员"
+        },
+        {
+          ID: "4",
+          name: "日常检查"
+        },
+        {
+          ID: "5",
+          name: "操作日志"
+        },
+      ];
+    } else if (this.house.house_use === "其他") {
+      this.oper_types = [
+        {
+          ID: "1",
+          name: "产权人信息"
+        },
+        {
+          ID: "4",
+          name: "日常检查"
+        },
+        {
+          ID: "5",
+          name: "操作日志"
+        },
+      ];
+    } else {
+      this.oper_types = [
+        {
+          ID: "1",
+          name: "产权人信息"
+        },
+        {
+          ID: "2",
+          name: "居住人员"
+        },
+        {
+          ID: "3",
+          name: "实有单位"
+        },
+        {
+          ID: "4",
+          name: "日常检查"
+        },
+        {
+          ID: "5",
+          name: "操作日志"
+        },
+      ];
+    }
   }
 
   addDailyCheck() {
     // let modal = this.modalCtrl.create("NewDailyCheckPage")
-    this.navCtrl.push("NewDailyCheckPage", { address: this.address, type: this.room.usetypeid == 1 ? 1 : 2 });
+    this.navCtrl.push("NewDailyCheckPage");
   }
 
   formatDate(time) {
@@ -65,30 +116,30 @@ export class HouseDetailPage {
   }
 
   addPeople() {
-    this.navCtrl.push("NewPeoplePage", this.address);
+    this.navCtrl.push("NewPeoplePage");
   }
 
   removeCheck(check) {
     this.showAlert(() => {
-      this.store.removeCheck(this.address.ID, check, () => {
-        this.ionViewWillEnter();
-      });
+      // this.store.removeCheck(this.address.ID, check, () => {
+      //   this.ionViewWillEnter();
+      // });
     });
   }
 
   removePeople1(man) {
     this.showAlert(() => {
-      this.store.removePeople(this.address.ID, "1", man, () => {
-        this.ionViewWillEnter();
-      });
+      // this.store.removePeople(this.address.ID, "1", man, () => {
+      //   this.ionViewWillEnter();
+      // });
     });
   }
 
   removePeople2(man) {
     this.showAlert(() => {
-      this.store.removePeople(this.address.ID, "2", man, () => {
-        this.ionViewWillEnter();
-      });
+      // this.store.removePeople(this.address.ID, "2", man, () => {
+      //   this.ionViewWillEnter();
+      // });
     });
   }
 
@@ -114,14 +165,12 @@ export class HouseDetailPage {
   }
 
   addPeople2() {
-    this.navCtrl.push("NewEmployerPage", this.address);
+    this.navCtrl.push("NewEmployerPage");
   }
 
   editHouse() {
-    this.navCtrl.push("HouseEditPage");
+    this.navCtrl.push("HouseEditPage", this.house);
   }
-
-
 
   goHome() {
     this.navCtrl.popToRoot();

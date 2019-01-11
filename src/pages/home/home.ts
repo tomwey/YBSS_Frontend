@@ -4,6 +4,7 @@ import { /*IonicPage, */NavController, NavParams, Content, App } from 'ionic-ang
 import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 // import { Users } from '../../provider/Users';
 import { ApiService } from '../../provider/api-service';
+import { YBSS } from '../../provider/YBSS';
 // import { ComponentsModule } from '../../components/components.module';
 // import { Tools } from '../../provider/Tools';
 
@@ -33,6 +34,7 @@ export class HomePage {
     // private modalCtrl: ModalController,
     // private alertCtrl: AlertController,
     private api: ApiService,
+    private ybss: YBSS,
     private iosFixed: iOSFixedScrollFreeze,
     public navParams: NavParams) {
   }
@@ -52,18 +54,26 @@ export class HomePage {
 
   scan() {
     // console.log(123);
+    // let index = Math.floor(Math.random() * 100);
+    // index = index % this.addresses.length;
+    // // console.log(index);
+    // if (index < this.addresses.length && index >= 0) {
+    //   let address = this.addresses[index];
+    //   // console.log(address);
+    //   if (!address.children) {
+    //     this.app.getRootNavs()[0].push("AddressInfoPage", address);
+    //   } else {
+    //     this.app.getRootNavs()[0].push("AddressListPage", address);
+    //   }
+    // }
+    let arr = ["4c423e23ee4544d68a9fb5833add5fa6", "50ade165c95c43caa06ac48242e089b9"];
     let index = Math.floor(Math.random() * 100);
-    index = index % this.addresses.length;
-    // console.log(index);
-    if (index < this.addresses.length && index >= 0) {
-      let address = this.addresses[index];
-      // console.log(address);
-      if (!address.children) {
-        this.app.getRootNavs()[0].push("AddressInfoPage", address);
-      } else {
-        this.app.getRootNavs()[0].push("AddressListPage", address);
-      }
-    }
+    let addrid = arr[index % arr.length];
+
+    this.ybss.GetHouse(addrid, (res) => {
+      console.log(res);
+      this.app.getRootNavs()[0].push("HouseDetailPage", res);
+    });
   }
 
   sections: any = [

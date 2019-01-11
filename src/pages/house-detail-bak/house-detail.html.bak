@@ -1,0 +1,168 @@
+<!--
+  Generated template for the AddressDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar color="white">
+    <ion-title>详情</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome();">
+        <ion-icon name="ios-home-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background: rgb(247,247,247);">
+  <div class="address-bg">
+    <h2 text-wrap>{{address.name}}</h2>
+    <!-- <p>四川省成都市青羊区</p> -->
+  </div>
+  <div class="info-box">
+    <ion-card>
+      <ion-item>
+        基本信息
+        <button ion-button item-right (click)="editHouse();">编辑</button>
+      </ion-item>
+      <ion-card-content>
+        <table class="table">
+          <tr>
+            <td class="label">房屋用途</td>
+            <td class="value">居住</td>
+            <td class="label">房屋类型</td>
+            <td class="value">单元楼</td>
+          </tr>
+          <tr>
+
+            <td class="label">结构类型</td>
+            <td class="value">砖混</td>
+            <td class="label">小区名称</td>
+            <td class="value">莲台寺公租房</td>
+          </tr>
+          <tr>
+
+            <td class="label">面积</td>
+            <td class="value">-- 平方米(㎡)</td>
+            <td class="label">房间数(个)</td>
+            <td class="value">--</td>
+          </tr>
+          <tr>
+
+            <td class="label">管理等级</td>
+            <td class="value">常规管理类（C）</td>
+            <td class="label">使用类型</td>
+            <td class="value">一般租借</td>
+          </tr>
+          <tr>
+
+            <td class="label">租用类型</td>
+            <td class="value">整租房</td>
+            <td class="label"></td>
+            <td class="value"></td>
+          </tr>
+        </table>
+      </ion-card-content>
+
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        日常检查
+        <button ion-button item-right (click)="addDailyCheck();">新增</button>
+      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let check of checks" class="custom-item">
+          <h2 text-wrap>{{check.memo}}</h2>
+          <p>检查日期: {{check.check_date}}</p>
+          <button ion-button item-right (click)="removeCheck(check);" color="danger" *ngIf="check._state == 1">注销</button>
+          <ion-note item-right *ngIf="check._state == 0">已注销</ion-note>
+        </ion-item>
+        <!-- <ion-item>
+          <h2 text-wrap>2018年6月13日社区民警林薇走访核实，该房屋暂时无人居中，予以备注</h2>
+          <p>
+            <ion-badge>无人居住</ion-badge>&nbsp;<ion-badge>无异常情况</ion-badge>
+          </p>
+          <p>检查时间: 2018-06-13</p>
+          <ion-note item-right>
+            <ion-badge color="danger">已注销</ion-badge>
+          </ion-note>
+        </ion-item> -->
+      </ion-list>
+      <div *ngIf="checks.length === 0" style="text-align: center;padding: 20px;color: #999;">
+        暂无日常检查数据
+      </div>
+    </ion-card>
+    <ion-card *ngIf="room.usetypeid !== '2'">
+      <ion-item>
+        {{room.usetypeid === "1" ? "实有人口" : "居住人员"}}
+        <button ion-button item-right (click)="addPeople();">新增</button>
+      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let man of people1" class="custom-item">
+          <h2>{{man.name}}</h2>
+          <p>证件号码: {{man.card_no}}</p>
+          <ion-note item-right *ngIf="man._state == 0">已注销</ion-note>
+          <button ion-button item-right (click)="removePeople1(man);" color="danger" *ngIf="man._state == 1">注销</button>
+        </ion-item>
+        <!-- <ion-item>
+          张三&emsp;511323199012093454
+        </ion-item>
+        <ion-item>
+          李四&emsp;511323199012093454
+        </ion-item> -->
+      </ion-list>
+      <div *ngIf="people1.length === 0" style="text-align: center;padding: 20px;color: #999;">
+        暂无{{room.usetypeid === "1" ? "实有人口" : "居住人员"}}
+      </div>
+    </ion-card>
+    <ion-card *ngIf="room.usetypeid !== '1'">
+      <ion-item>
+        从业人员
+        <button ion-button item-right (click)="addPeople2();">新增</button>
+      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let man of people2" class="custom-item">
+          <h2>{{man.name}}</h2>
+          <p>证件号码: {{man.card_no}}</p>
+          <ion-note item-right *ngIf="man._state == 0">已注销</ion-note>
+          <button ion-button item-right (click)="removePeople2(man);" color="danger" *ngIf="man._state == 1">注销</button>
+        </ion-item>
+        <!-- <ion-item>
+          张三&emsp;511323199012093454
+        </ion-item>
+        <ion-item>
+          李四&emsp;511323199012093454
+        </ion-item> -->
+      </ion-list>
+      <div *ngIf="people2.length === 0" style="text-align: center;padding: 20px;color: #999;">
+        暂无从业人员
+      </div>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        房屋备注信息
+        <!-- <button ion-button item-right>新增</button> -->
+      </ion-item>
+      <div style="text-align: center;padding: 20px;color:#999;">
+        暂无备注信息
+      </div>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        操作日志
+      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let log of logs" class="custom-item">
+          <h2>{{log.name}}</h2>
+          <p>时间: {{formatDate(log.time)}}</p>
+        </ion-item>
+      </ion-list>
+      <div *ngIf="logs.length === 0" style="text-align: center;padding: 20px;color: #999;">
+        暂无操作日志
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

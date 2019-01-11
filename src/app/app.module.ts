@@ -25,6 +25,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { MyZonePage } from '../pages/my-zone/my-zone';
 import { SyncPage } from '../pages/sync/sync';
 import { Store } from '../provider/Store';
+import { YBSS } from '../provider/YBSS';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { Store } from '../provider/Store';
     AppManager,
     iOSFixedScrollFreeze,
     Store,
+    YBSS,
   ]
 })
 export class AppModule { }
