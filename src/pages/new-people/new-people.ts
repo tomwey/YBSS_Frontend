@@ -54,6 +54,10 @@ export class NewPeoplePage {
     // console.log(this.controls);
     let obj = {};
     this.controls.forEach(control => {
+      if (control.required && !control.value) {
+        this.tools.showToast(`${control.name}不能为空`);
+        return;
+      }
       obj[control.ID] = control.value || "";
     });
     // this.store.addItem(obj, "peoples", () => {

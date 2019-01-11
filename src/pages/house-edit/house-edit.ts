@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { YBSS } from '../../provider/YBSS';
 import { elementEnd } from '@angular/core/src/render3/instructions';
 import { CommonSelectPageModule } from '../common-select/common-select.module';
+import { Tools } from '../../provider/Tools';
 
 /**
  * Generated class for the HouseEditPage page.
@@ -22,6 +23,7 @@ export class HouseEditPage {
   constructor(public navCtrl: NavController,
     private events: Events,
     private ybss: YBSS,
+    private tools: Tools,
     public navParams: NavParams) {
 
     this.house = this.navParams.data;
@@ -79,6 +81,10 @@ export class HouseEditPage {
 
     let payload = {};
     this.controls.forEach(control => {
+      if (control.required && !control.value) {
+        this.tools.showToast(`${control.name}不能为空`);
+        return;
+      }
       if (control.ID !== "image") {
         if (control.ID === "house_use") {
           payload["house_use"] = [control.value || ""];
