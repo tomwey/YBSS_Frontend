@@ -133,8 +133,12 @@ export class HouseDetailPage {
     return Utils.dateFormat(new Date(time), "yyyy-MM-dd HH:mm:ss");
   }
 
-  addPerson() {
-    this.navCtrl.push("NewPeoplePage");
+  savePerson(item = null) {
+    let id = null;
+    if (item) {
+      id = item.id;
+    }
+    this.navCtrl.push("NewPeoplePage", { house: this.house, id: id });
   }
 
   addCompany() {

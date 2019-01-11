@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 // import { Store } from '../../provider/Store';
 import { Tools } from '../../provider/Tools';
+import { YBSS } from '../../provider/YBSS';
 
 /**
  * Generated class for the NewPeoplePage page.
@@ -16,12 +17,17 @@ import { Tools } from '../../provider/Tools';
   templateUrl: 'new-people.html',
 })
 export class NewPeoplePage {
-  address: any = null;
+  // address: any = null;
+  house: any;
+  pid: any;
   constructor(public navCtrl: NavController,
     // private store: Store,
     private tools: Tools,
+    private ybss: YBSS,
     public navParams: NavParams) {
-    this.address = this.navParams.data;
+    // this.address = this.navParams.data;
+    this.house = this.navParams.data.house;
+    this.pid = this.navParams.data.id;
   }
 
   ionViewDidLoad() {
@@ -58,6 +64,15 @@ export class NewPeoplePage {
     //   this.tools.showToast("录入成功");
     //   this.navCtrl.pop();
     // });
+    this.ybss.SaveObj(this.house.id, this.pid, "person", obj, null, (res) => {
+      for (const key in res) {
+        if (res.hasOwnProperty(key)) {
+          const element = res[key];
+          this.house[key] = element;
+        }
+      }
+      this.navCtrl.pop();
+    });
   }
 
   selectOptionsData: any = {
@@ -111,7 +126,7 @@ export class NewPeoplePage {
         value: '女',
       },
     ],
-    manage_level: [
+    mgr_level: [
       {
         label: '常规管理 (A)',
         value: '常规管理 (A)',
@@ -125,21 +140,31 @@ export class NewPeoplePage {
         value: '常规管理 (C)',
       },
     ],
-    cj_people_type: [
+    caiji_type: [
       {
-        label: '类别1',
-        value: '1',
+        label: '采集类别1',
+        value: '采集类别1',
       },
       {
-        label: '类别2',
-        value: '2',
+        label: '采集类别2',
+        value: '采集类别2',
       },
       {
-        label: '类别3',
-        value: '3',
+        label: '采集类别3',
+        value: '采集类别3',
       },
     ],
-    cj_reason: [
+    caiji_reason: [
+      {
+        label: '采集依据1',
+        value: '采集依据1',
+      },
+      {
+        label: '采集依据2',
+        value: '采集依据2',
+      },
+    ],
+    situation: [
       {
         label: '情况1',
         value: '1',
@@ -149,170 +174,160 @@ export class NewPeoplePage {
         value: '2',
       },
     ],
-    people_condition: [
-      {
-        label: '情况1',
-        value: '1',
-      },
-      {
-        label: '情况2',
-        value: '2',
-      },
-    ],
-    jg_type: [
+    native_place: [
       {
         label: '籍贯1',
-        value: '1',
+        value: '籍贯1',
       },
       {
         label: '籍贯2',
-        value: '2',
+        value: '籍贯2',
       },
     ],
-    sf_type: [
+    identity: [
       {
         label: '党员',
-        value: '1',
+        value: '党员',
       },
       {
         label: '团员',
-        value: '2',
+        value: '团员',
       },
       {
         label: '群众',
-        value: '3',
+        value: '群众',
       }
     ],
-    mz_type: [
+    nation: [
       {
         label: '汉族',
-        value: '1',
+        value: '汉族',
       },
       {
         label: '藏族',
-        value: '2',
+        value: '藏族',
       },
       {
         label: '维族',
-        value: '3',
+        value: '维族',
       },
     ],
-    marry_type: [
+    marry_status: [
       {
         label: '已婚',
-        value: '1',
+        value: '已婚',
       },
       {
         label: '未婚',
-        value: '2',
+        value: '未婚',
       },
       {
         label: '离婚',
-        value: '3',
+        value: '离婚',
       },
     ],
-    zzmm_type: [
+    gov_type: [
       {
         label: '党员',
-        value: '1',
+        value: '党员',
       },
       {
-        label: '团员',
-        value: '2',
+        label: '党员',
+        value: '党员',
       },
     ],
-    zj_type: [
+    religion: [
       {
         label: '佛教',
-        value: '1',
+        value: '佛教',
       },
       {
         label: '基督教',
-        value: '2',
+        value: '基督教',
       },
     ],
     blood_type: [
       {
         label: 'A型',
-        value: 'a',
+        value: 'A型',
       },
       {
         label: 'B型',
-        value: 'b',
+        value: 'B型',
       },
       {
         label: 'O型',
-        value: 'o',
+        value: 'O型',
       },
       {
         label: 'AB型',
-        value: 'ab',
+        value: 'AB型',
       },
     ],
-    by_state: [
+    mili_serve_state: [
       {
         label: '服兵役',
-        value: '1',
+        value: '服兵役',
       },
       {
         label: '未服兵役',
-        value: '2',
+        value: '未服兵役',
       },
     ],
-    study_type: [
+    education: [
       {
         label: '中专',
-        value: '1',
+        value: '中专',
       },
       {
         label: '大专',
-        value: '2',
+        value: '大专',
       },
       {
         label: '本科',
-        value: '3',
+        value: '本科',
       },
       {
         label: '硕士',
-        value: '4',
+        value: '硕士',
       },
       {
         label: '博士',
-        value: '5',
+        value: '博士',
       },
     ],
-    specialty_type: [
+    speciality: [
       {
         label: '钢琴二级',
-        value: '1',
+        value: '钢琴二级',
       },
       {
         label: '跳高运动员',
-        value: '2',
+        value: '跳高运动员',
       },
     ],
-    job_type: [
+    job: [
       {
         label: '计算机',
-        value: '1',
+        value: '计算机',
       },
       {
         label: '司机',
-        value: '2',
+        value: '司机',
       },
       {
         label: '教师',
-        value: '3',
+        value: '教师',
       },
     ],
-    rytc_type: [
+    strong_point: [
       {
         label: '无特长',
-        value: '1',
+        value: '无特长',
       },
       {
         label: '特长1',
-        value: '2',
+        value: '特长1',
       },
     ]
   };
@@ -361,7 +376,7 @@ export class NewPeoplePage {
       required: true
     },
     {
-      ID: 'hj_address',
+      ID: 'reg_address',
       type: 2,
       name: '户籍地址',
       value: '',
@@ -375,46 +390,46 @@ export class NewPeoplePage {
       required: true
     },
     {
-      ID: 'manage_level',
+      ID: 'mgr_level',
       type: 4,
       name: '管理等级',
       value: '',
       required: true
     },
     {
-      ID: 'cj_people_type',
+      ID: 'caiji_type',
       type: 4,
       name: '采集人类别',
       value: '',
       required: true
     },
     {
-      ID: 'cj_reason',
+      ID: 'caiji_reason',
       type: 4,
       name: '采集依据',
       value: '',
       required: true
     },
     {
-      ID: 'people_condition',
+      ID: 'situation',
       type: 4,
       name: '人员情况',
       value: '',
     },
     {
-      ID: 'birth_address',
+      ID: 'birth_addr',
       type: 2,
       name: '出生地',
       value: '',
     },
     {
-      ID: 'jg_type',
+      ID: 'native_place',
       type: 4,
       name: '籍贯',
       value: '',
     },
     {
-      ID: 'sf_type',
+      ID: 'identity',
       type: 4,
       name: '身份',
       value: '',
@@ -426,7 +441,7 @@ export class NewPeoplePage {
       value: '',
     },
     {
-      ID: 'mz_type',
+      ID: 'nation',
       type: 4,
       name: '民族',
       value: '',
@@ -438,26 +453,26 @@ export class NewPeoplePage {
       value: '',
     },
     {
-      ID: 'phone',
+      ID: 'telephone',
       type: 8,
       name: '联系电话',
       value: '',
     },
     {
-      ID: 'marry_type',
+      ID: 'marry_status',
       type: 4,
       name: '婚姻状况',
       value: '',
     },
     {
-      ID: 'zzmm_type',
+      ID: 'gov_type',
       type: 4,
       name: '政治面貌',
       value: '',
       // required: true
     },
     {
-      ID: 'zj_type',
+      ID: 'religion',
       type: 4,
       name: '宗教信仰',
       value: '',
@@ -478,35 +493,35 @@ export class NewPeoplePage {
       // required: true
     },
     {
-      ID: 'by_state',
+      ID: 'mili_serve_state',
       type: 4,
       name: '兵役情况',
       value: '',
       // required: true
     },
     {
-      ID: 'study_type',
+      ID: 'education',
       type: 4,
       name: '文化程度',
       value: '',
       // required: true
     },
     {
-      ID: 'specialty_type',
+      ID: 'speciality',
       type: 4,
       name: '专长',
       value: '',
       // required: true
     },
     {
-      ID: 'job_type',
+      ID: 'job',
       type: 4,
       name: '职业',
       value: '',
       // required: true
     },
     {
-      ID: 'rytc_type',
+      ID: 'strong_point',
       type: 4,
       name: '人员特长',
       value: '',

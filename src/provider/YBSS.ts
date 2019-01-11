@@ -52,4 +52,31 @@ export class YBSS {
         });
     }
 
+    SaveObj(house_id, obj_id, className, payload, files = null, callback) {
+        let body = new FormData();
+        if (files) {
+            files.forEach(file => {
+                body.append('files[][file]', file);
+            });
+        }
+        if (obj_id) {
+            body.append("obj_id", obj_id);
+        }
+
+        body.append("payload", JSON.stringify(payload))
+        this.users.token().then(token => {
+            body.append("id", house_id);
+            body.append("token", token)
+            this.api.POST2(`ybss/house/${className}/save`, body)
+                .then(res => {
+                    if (callback) {
+                        callback(res["data"]);
+                    }
+                })
+                .catch(error => {
+                    this.tools.showToast("服务器超时，请重试");
+                });
+        });
+    }
+
 }
