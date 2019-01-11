@@ -24,8 +24,10 @@
     <h2 class="address">
       <ion-icon name="ios-pin-outline"></ion-icon>{{house.address}}
     </h2>
-    <div class="other-info">
-      <h2 class="title">基本信息</h2>
+    <div class="other-info box">
+      <ion-item class="head-item">基本信息
+        <button ion-button item-right (click)="editHouse();">编辑</button>
+      </ion-item>
       <table class="table">
         <tr>
           <td class="label">房屋用途</td>
@@ -58,8 +60,8 @@
 
           <td class="label">租用类型</td>
           <td class="value">{{house.rent_type}}</td>
-          <td class="label"></td>
-          <td class="value"></td>
+          <td class="label">房屋备注</td>
+          <td class="value">{{house.memo}}</td>
         </tr>
       </table>
     </div>
@@ -67,7 +69,7 @@
 
   <div class="box">
     <ion-item class="head-item">产权人信息
-      <button ion-button item-right>新增</button>
+      <button ion-button item-right (click)="addProperty();">新增</button>
     </ion-item>
     <div class="list-box">
       <ion-list></ion-list>
@@ -79,7 +81,7 @@
 
   <div class="box">
     <ion-item class="head-item">日常检查
-      <button ion-button item-right>新增</button>
+      <button ion-button item-right (click)="addDailyCheck();">新增</button>
     </ion-item>
     <div class="list-box">
       <ion-list></ion-list>
@@ -89,9 +91,9 @@
     </div>
   </div>
 
-  <div class="box">
+  <div class="box" *ngIf="houseUse !== 3">
     <ion-item class="head-item">居住人口
-      <button ion-button item-right>新增</button>
+      <button ion-button item-right (click)="addPerson();">新增</button>
     </ion-item>
     <div class="list-box">
       <ion-list></ion-list>
@@ -101,8 +103,8 @@
     </div>
   </div>
 
-  <div class="box">
-    <ion-item class="head-item">实有单位<button ion-button item-right>新增</button></ion-item>
+  <div class="box" *ngIf="houseUse === 2">
+    <ion-item class="head-item">实有单位<button ion-button item-right (click)="addCompany();">新增</button></ion-item>
     <div class="list-box">
       <ion-list></ion-list>
       <div class="empty-box" *ngIf="properties.length === 0">

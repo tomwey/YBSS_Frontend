@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Store } from '../../provider/Store';
+// import { Store } from '../../provider/Store';
 import { Tools } from '../../provider/Tools';
 
 /**
@@ -18,18 +18,18 @@ import { Tools } from '../../provider/Tools';
 export class NewPeoplePage {
   address: any = null;
   constructor(public navCtrl: NavController,
-    private store: Store,
+    // private store: Store,
     private tools: Tools,
     public navParams: NavParams) {
     this.address = this.navParams.data;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NewPeoplePage');
+    // console.log('ionViewDidLoad NewPeoplePage');
 
-    this.store.getItems("peoples", (arr) => {
-      console.log(arr);
-    });
+    // this.store.getItems("peoples", (arr) => {
+    //   console.log(arr);
+    // });
   }
 
   controlSelect(control) {
@@ -54,75 +54,75 @@ export class NewPeoplePage {
     //   this.tools.showToast("录入成功");
     //   this.navCtrl.pop();
     // });
-    this.store.addPeople(this.address.ID, "1", obj, () => {
-      this.tools.showToast("录入成功");
-      this.navCtrl.pop();
-    });
+    // this.store.addPeople(this.address.ID, "1", obj, () => {
+    //   this.tools.showToast("录入成功");
+    //   this.navCtrl.pop();
+    // });
   }
 
   selectOptionsData: any = {
     card_type: [
       {
         label: '居民身份证',
-        value: '1'
+        value: '居民身份证'
       },
       {
         label: '军官证',
-        value: '2'
+        value: '军官证'
       },
       {
         label: '社保卡',
-        value: '3'
+        value: '社保卡'
       },
       {
         label: '护照',
-        value: '4'
+        value: '护照'
       },
       {
         label: '驾驶证',
-        value: '5'
+        value: '驾驶证'
       },
     ],
     country: [
       {
         label: '中国大陆',
-        value: '1',
+        value: '中国大陆',
       },
       {
         label: '中国香港',
-        value: '2',
+        value: '中国香港',
       },
       {
         label: '中国澳门',
-        value: '3',
+        value: '中国澳门',
       },
       {
         label: '台湾地区',
-        value: '4',
+        value: '台湾地区',
       },
     ],
     sex: [
       {
         label: '男',
-        value: '1',
+        value: '男',
       },
       {
         label: '女',
-        value: '2',
+        value: '女',
       },
     ],
     manage_level: [
       {
         label: '常规管理 (A)',
-        value: '1',
+        value: '常规管理 (A)',
       },
       {
         label: '常规管理 (B)',
-        value: '2',
+        value: '常规管理 (B)',
       },
       {
         label: '常规管理 (C)',
-        value: '3',
+        value: '常规管理 (C)',
       },
     ],
     cj_people_type: [

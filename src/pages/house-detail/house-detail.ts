@@ -28,13 +28,16 @@ export class HouseDetailPage {
   oper_type = "1";
   oper_types: any = [];
 
+  houseUse: number = 1;
+
   constructor(public navCtrl: NavController,
     // private store: Store,
     private alertCtrl: AlertController,
     public navParams: NavParams) {
     this.house = this.navParams.data;
 
-    this.prepareMenus();
+    // this.prepareMenus();
+    this.calcHouseUse();
   }
 
   ionViewDidLoad() {
@@ -43,6 +46,16 @@ export class HouseDetailPage {
 
   segmentChanged(ev) {
 
+  }
+
+  calcHouseUse() {
+    if (this.house.house_use.indexOf("居住") !== -1) {
+      this.houseUse = 1;
+    } else if (this.house.house_use.indexOf("其他") !== -1) {
+      this.houseUse = 3;
+    } else {
+      this.houseUse = 2;
+    }
   }
 
   prepareMenus() {
@@ -107,6 +120,10 @@ export class HouseDetailPage {
     }
   }
 
+  addProperty() {
+
+  }
+
   addDailyCheck() {
     // let modal = this.modalCtrl.create("NewDailyCheckPage")
     this.navCtrl.push("NewDailyCheckPage");
@@ -116,32 +133,12 @@ export class HouseDetailPage {
     return Utils.dateFormat(new Date(time), "yyyy-MM-dd HH:mm:ss");
   }
 
-  addPeople() {
+  addPerson() {
     this.navCtrl.push("NewPeoplePage");
   }
 
-  removeCheck(check) {
-    this.showAlert(() => {
-      // this.store.removeCheck(this.address.ID, check, () => {
-      //   this.ionViewWillEnter();
-      // });
-    });
-  }
-
-  removePeople1(man) {
-    this.showAlert(() => {
-      // this.store.removePeople(this.address.ID, "1", man, () => {
-      //   this.ionViewWillEnter();
-      // });
-    });
-  }
-
-  removePeople2(man) {
-    this.showAlert(() => {
-      // this.store.removePeople(this.address.ID, "2", man, () => {
-      //   this.ionViewWillEnter();
-      // });
-    });
+  addCompany() {
+    this.navCtrl.push("NewPeoplePage");
   }
 
   showAlert(cb) {

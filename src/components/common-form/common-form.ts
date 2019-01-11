@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Renderer, ViewChild, ElementRef } from '@angular/core';
 
 /**
  * Generated class for the CommonFormComponent component.
@@ -18,8 +18,11 @@ export class CommonFormComponent {
   @Input() controls: any = [];
   @Output() onControlSelect: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
-    
+  @ViewChild('fileInput') fileInput: ElementRef;
+
+  currentFileItem: any;
+  constructor(private renderer: Renderer) {
+
   }
 
   placeholderFromItem(item): string {
@@ -31,8 +34,9 @@ export class CommonFormComponent {
       return `请选择 (${item.type == 6 ? '多选' : '单选'})`;
     } else {
       let val = item.value.label || item.value;
+      // console.log(val);
       if (!val) return null;
-      
+
       return val.split('|')[0];
     }
   }
@@ -41,8 +45,43 @@ export class CommonFormComponent {
     this.onControlSelect.emit(item);
   }
 
+  uploadFile(item) {
+    this.currentFileItem = item;
+
+    let clickEvent: MouseEvent = new MouseEvent('click', { bubbles: true });
+    this.renderer.invokeElementMethod(
+      this.fileInput.nativeElement, "dispatchEvent", [clickEvent]
+    );
+  }
+
+  selectedFiles(ev) {
+    let files: FileList = this.fileInput.nativeElement.files;
+    // console.log(files);
+    if (this.currentFileItem) {
+      // if (this.currentFileItem.multiple) {
+      this.currentFileItem.value = files;
+      // } else {
+      //   this.currentFileItem.value = files[0];
+      // }
+    }
+  }
+
+  fileValueFromItem(item) {
+    if (!item.value) {
+      return "选择文件";
+    } else {
+      const files = item.value || [];
+      let temp = [];
+      for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        temp.push(file.name);
+      }
+      return temp.join(",") || "选择文件";
+    }
+  }
+
   openScan(item) {
-    
+
   }
 
 }

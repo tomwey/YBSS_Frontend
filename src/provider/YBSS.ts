@@ -16,7 +16,7 @@ export class YBSS {
 
     GetHouse(addrid, callback) {
         this.users.token().then(token => {
-            this.api.GET("/ybss/house", { token: token, addr_id: addrid })
+            this.api.GET("ybss/house", { token: token, addr_id: addrid })
                 .then(data => {
                     // console.log(data);
                     if (data && data['data']) {
@@ -27,6 +27,27 @@ export class YBSS {
                 })
                 .catch(error => {
                     this.tools.showToast(error.message || "服务器出错了~");
+                });
+        });
+    }
+
+    UpdateHouse(house_id, image, payload, callback) {
+        let body = new FormData();
+        if (image) {
+            body.append("image", image)
+        }
+        body.append("payload", JSON.stringify(payload))
+        this.users.token().then(token => {
+            body.append("id", house_id);
+            body.append("token", token)
+            this.api.POST2("ybss/house/update", body)
+                .then(res => {
+                    if (callback) {
+                        callback(res["data"]);
+                    }
+                })
+                .catch(error => {
+                    this.tools.showToast("服务器超时，请重试");
                 });
         });
     }

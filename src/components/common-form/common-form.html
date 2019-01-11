@@ -17,7 +17,12 @@
         placeholder="{{placeholderFromItem(item)}}" [(ngModel)]="item.value" [disabled]="item.disabled"></ion-input>
 
       <!-- 上传文件 -->
-      <ion-input *ngIf="item.type == 20" type="file" placeholder="" [(ngModel)]="item.value"></ion-input>
+      <!-- <ion-input *ngIf="item.type == 20" type="file" placeholder="" (ionChange)="selectFiles($event);"></ion-input> -->
+      <div class="custom-select-control" tappable (tap)="uploadFile(item);" item-content *ngIf="item.type == 20">
+        <input type="file" multiple="item.multiple" (change)="selectedFiles($event)" style="display: none" #fileInput>
+        {{fileValueFromItem(item)}}
+        <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+      </div>
 
       <button ion-button icon-only clear item-right *ngIf="item.can_scan" (click)="openScan(item);">
         <ion-icon name="ios-qr-scanner-outline"></ion-icon>
