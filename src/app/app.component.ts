@@ -14,24 +14,24 @@ import { Users } from '../provider/Users';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any;// = LoginPage;
+  rootPage: any;// = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar,
-    private users: Users, 
+    private users: Users,
     // private tools: Tools,
     // private appManager: AppManager,
     // private wechat: Wechat,
     splashScreen: SplashScreen) {
-    
-      this.loginIfNeeded();
 
-      // this.rootPage = 'UserProfilePage';
-      
+    this.loginIfNeeded();
+
+    // this.rootPage = 'UserProfilePage';
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       // statusBar.styleDefault();
-      // splashScreen.hide();
+      splashScreen.hide();
 
       // this.loginIfNeeded();
     });
@@ -39,7 +39,7 @@ export class MyApp {
 
   loginIfNeeded() {
     this.users.token().then(token => {
-      // console.log(token);
+      console.log(token);
       // console.log('###########');
       if (!token) {
         this.rootPage = LoginPage;

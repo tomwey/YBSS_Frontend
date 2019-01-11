@@ -11,9 +11,11 @@
     <ion-title>我的</ion-title>
   </ion-navbar> -->
   <div class="user-caption">
-    <img src="assets/imgs/default_avatar.png">
-    <p>张警官</p>
-    <button ion-button color="white" outline small><ion-icon name="ios-phone-portrait-outline"></ion-icon>&nbsp;13012345678</button>
+    <img [src]="user.avatar || 'assets/imgs/default_avatar.png'">
+    <p>{{user.name}}</p>
+    <button ion-button color="white" outline small>
+      <ion-icon name="ios-phone-portrait-outline"></ion-icon>&nbsp;{{user.mobile}}
+    </button>
   </div>
 </ion-header>
 

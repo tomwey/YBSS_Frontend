@@ -3,6 +3,7 @@ import { /*IonicPage,*/ NavController, NavParams, Content } from 'ionic-angular'
 import { Users } from '../../provider/Users';
 // import { LoginPage } from '../../pages/login/login';
 import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
+import { Tools } from '../../provider/Tools';
 
 /**
  * Generated class for the SettingPage page.
@@ -18,15 +19,20 @@ import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 })
 export class SettingPage {
 
-  user: any = null;
+  user: any = {
+    avatar: '',
+    name: '',
+    mobile: ''
+  };
   error: any = null;
 
   @ViewChild(Content) content: Content;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     private users: Users,
     // private app: App,
     // private events: Events,
+    private tools: Tools,
     private iosFixed: iOSFixedScrollFreeze,
     // private modalCtrl: ModalController,
     // private alertCtrl: AlertController,
@@ -41,7 +47,7 @@ export class SettingPage {
     //   this.loadUserData();
     // });
     // console.log('ionViewDidLoad SettingPage');
-    // this.loadUserProfile();
+    this.loadUserProfile();
   }
 
   loadUserProfile() {
@@ -53,7 +59,7 @@ export class SettingPage {
         }
       })
       .catch(error => {
-        this.error = error.message || '服务器出错了~';
+        this.tools.showToast(error.message || '服务器出错了~');
       })
   }
 

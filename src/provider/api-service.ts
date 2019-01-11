@@ -12,8 +12,8 @@ import { Tools } from './Tools';
   for more info on providers and Angular 2 DI.
 */
 // 正式服务器和账号
-const API_HOST: string = "http://b.xiaome.work/api/v1";
-const API_KEY: string = "b896833925be9f17633ffc386c97b1bb";
+const API_HOST: string = "http://ybss.afterwind.cn/api/v1";
+const API_KEY: string = "be96ef2e3a6b8407fe8bc72664eba84f";
 
 // 测试账号和测试服务器
 // const API_HOST: string = "http://0.0.0.0:3000/api/v1";
@@ -124,7 +124,7 @@ export class ApiService {
         .toPromise()
         .then(resp => {
           this.hideLoading();
-          // console.log('success');
+          console.log('success');
           let result = this.handleSuccess(resp);
           if (result.code == 0) {
             resolve(result);
@@ -209,7 +209,7 @@ export class ApiService {
   // 处理请求成功的回调
   private handleSuccess(resp: Response): any {
     let body = resp.json();
-    // console.log(`result: ${JSON.stringify(body)}`);
+    console.log(`result: ${JSON.stringify(body)}`);
     if (body.code == 0) {
       let rd: ResultData = { code: 0, total: body.total, data: body.data || {} };
       return rd;

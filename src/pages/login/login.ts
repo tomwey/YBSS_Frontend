@@ -30,7 +30,7 @@ export class LoginPage {
 
   @ViewChild(Content) content: Content;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     // private api: ApiService,
     // private san: DomSanitizer,
@@ -49,16 +49,15 @@ export class LoginPage {
   }
 
   doLogin() {
-    // this.users.Login(this.user.mobile, this.user.code)
-    //   .then(data => {
-    //     // console.log(data);
-    //     // this.checkProfile();
-    //     this.app.getRootNavs()[0].setRoot(TabsPage);
-    //   })
-    //   .catch(error => {
-    //     this.tools.showToast(error);
-    //   });
-    this.app.getRootNavs()[0].setRoot(TabsPage);
+    this.users.Login(this.user.mobile, this.user.password)
+      .then(data => {
+        this.app.getRootNavs()[0].setRoot(TabsPage);
+      })
+      .catch(error => {
+        this.tools.showToast(error);
+      });
+
+    // this.app.getRootNavs()[0].setRoot(TabsPage);
   }
 
   forgetPassword() {
