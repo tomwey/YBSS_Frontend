@@ -61,6 +61,28 @@ page-house-detail {
         margin-top: 10px;
     }
 
+    .box {
+        margin-top: 10px;
+        background: #fff;
+        width: 100%;
+        padding-bottom: 30px;
+        .head-item {
+            border-bottom: 0.55px solid #e6e6e6;
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            .item-inner {
+                border-bottom: 0;
+            }
+        }
+
+        .empty-box {
+            color: #999;
+            font-size: 14px;
+            text-align: center;
+        }
+    }
+
     // .custom-item {
     //     h2 {
     //         font-size: 14px;

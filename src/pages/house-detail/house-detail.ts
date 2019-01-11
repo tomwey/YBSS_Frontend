@@ -23,6 +23,7 @@ export class HouseDetailPage {
   people: any = [];
   employees: any = [];
   logs: any = [];
+  properties: any = [];
 
   oper_type = "1";
   oper_types: any = [];
@@ -45,7 +46,7 @@ export class HouseDetailPage {
   }
 
   prepareMenus() {
-    if (this.house.house_use === "居住") {
+    if (this.house.house_use.indexOf("居住") !== -1) {
       this.oper_types = [
 
         {
@@ -65,7 +66,7 @@ export class HouseDetailPage {
           name: "操作日志"
         },
       ];
-    } else if (this.house.house_use === "其他") {
+    } else if (this.house.house_use.indexOf("其他") !== -1) {
       this.oper_types = [
         {
           ID: "1",
