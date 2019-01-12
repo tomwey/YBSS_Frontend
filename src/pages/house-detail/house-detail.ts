@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 // import { Store } from '../../provider/Store';
 import { Utils } from '../../provider/Utils';
+import { Tools } from '../../provider/Tools';
+import { YBSS } from '../../provider/YBSS';
 
 /**
  * Generated class for the AddressDetailPage page.
@@ -33,6 +35,8 @@ export class HouseDetailPage {
   constructor(public navCtrl: NavController,
     // private store: Store,
     private alertCtrl: AlertController,
+    private tools: Tools,
+    private ybss: YBSS,
     public navParams: NavParams) {
     this.house = this.navParams.data;
 
@@ -118,6 +122,24 @@ export class HouseDetailPage {
         },
       ];
     }
+  }
+
+  removeItem(ev: Event, item, className) {
+    ev.stopPropagation();
+
+    this.showAlert(() => {
+      this.ybss.SaveObj(this.house.id, item.id, className, {
+        state: 1
+      }, null, (res) => {
+        this.tools.showToast("注销成功！");
+        for (const key in res) {
+          if (res.hasOwnProperty(key)) {
+            const element = res[key];
+            this.house[key] = element;
+          }
+        }
+      });
+    });
   }
 
   addProperty(item = null) {

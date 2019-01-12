@@ -80,21 +80,21 @@ export class NewDailyCheckPage {
         has_man: [
           {
             label: '无',
-            value: false
+            value: "无"
           },
           {
             label: '有',
-            value: true
+            value: "有"
           },
         ],
         has_error: [
           {
             label: '无',
-            value: false
+            value: "无"
           },
           {
             label: '有',
-            value: true
+            value: "有"
           },
         ]
       };
@@ -143,11 +143,11 @@ export class NewDailyCheckPage {
         has_error: [
           {
             label: '无',
-            value: false
+            value: "无"
           },
           {
             label: '有',
-            value: true
+            value: "有"
           },
         ]
       };
@@ -176,6 +176,7 @@ export class NewDailyCheckPage {
     let files;
     if (fileControl.required) {
       files = this.controls[0].value;
+      console.log(files);
       if (!files || files.length === 0) {
         this.tools.showToast(`${fileControl.name}不能为空`);
         return;
@@ -189,23 +190,14 @@ export class NewDailyCheckPage {
           this.tools.showToast(`${control.name}不能为空`);
           return;
         }
-        if (control.ID === "has_man") {
-          if (control.value) {
-            obj[control.ID] = control.value === "有" ? true : false;
-          }
-        } else if (control.ID === "has_error") {
-          if (control.value) {
-            obj[control.ID] = control.value === "有" ? true : false;
-          }
-        } else {
-          obj[control.ID] = control.value || "";
-        }
+
+        obj[control.ID] = control.value || "";
 
       }
     });
 
     if (this.type !== "1") {
-      obj["has_man"] = true; // 给一个默认值
+      obj["has_man"] = "有"; // 给一个默认值
     }
     // this.store.addItem(obj, "peoples", () => {
     //   this.tools.showToast("录入成功");

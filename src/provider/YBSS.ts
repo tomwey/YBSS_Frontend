@@ -57,7 +57,7 @@ export class YBSS {
         if (files) {
             for (let i = 0; i < files.length; i++) {
                 let file = files[i];
-                body.append('files[][file]', file);
+                body.append("files[][file]", file);
             }
         }
         if (obj_id) {
