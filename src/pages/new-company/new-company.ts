@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Tools } from '../../provider/Tools';
+import { YBSS } from '../../provider/YBSS';
 
 /**
  * Generated class for the NewCompanyPage page.
@@ -15,7 +17,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NewCompanyPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  house: any;
+  obj_id: any;
+  constructor(public navCtrl: NavController,
+    private tools: Tools,
+    private ybss: YBSS,
+    public navParams: NavParams) {
+    this.house = this.navParams.data.house;
+    this.obj_id = this.navParams.data.id;
   }
 
   ionViewDidLoad() {
@@ -35,89 +44,107 @@ export class NewCompanyPage {
   }
 
   save() {
-    console.log(this.controls);
+    // console.log(this.controls);
+    let obj = {};
+    this.controls.forEach(control => {
+      if (control.required && !control.value) {
+        this.tools.showToast(`${control.name}不能为空`);
+        return;
+      }
+      obj[control.ID] = control.value || "";
+    });
+
+    this.ybss.SaveObj(this.house.id, this.obj_id, "company", obj, null, (res) => {
+      for (const key in res) {
+        if (res.hasOwnProperty(key)) {
+          const element = res[key];
+          this.house[key] = element;
+        }
+      }
+      this.navCtrl.pop();
+    });
   }
 
   selectOptionsData: any = {
     comp_type: [
       {
-        label: '集团公司',
-        value: '1'
+        label: '事业单位',
+        value: '事业单位'
       },
       {
-        label: '有限公司',
-        value: '2'
+        label: '旅店',
+        value: '旅店'
       },
       {
-        label: '外资公司',
-        value: '3'
+        label: '其他',
+        value: '其他'
       },
     ],
     comp_xz_type: [
       {
-        label: '性质1',
-        value: '1'
+        label: '国有',
+        value: '国有'
       },
       {
-        label: '性质2',
-        value: '2'
+        label: '私营',
+        value: '私营'
       },
       {
-        label: '性质3',
-        value: '3'
+        label: '其他',
+        value: '其他'
       },
     ],
-    manage_level: [
+    mgr_level: [
       {
         label: '常规管理 (A)',
-        value: '1'
+        value: '常规管理 (A)'
       },
       {
         label: '常规管理 (B)',
-        value: '2'
+        value: '常规管理 (B)'
       },
       {
         label: '常规管理 (C)',
-        value: '3'
+        value: '常规管理 (C)'
       },
     ],
 
     comp_prop_type: [
       {
         label: '单位属性1',
-        value: '1'
+        value: '单位属性1'
       },
       {
         label: '单位属性2',
-        value: '2'
+        value: '单位属性2'
       },
       {
         label: '单位属性3',
-        value: '3'
+        value: '单位属性3'
       },
     ],
     top_comp_type: [
       {
         label: '上级单位1',
-        value: '1'
+        value: '上级单位1'
       },
       {
         label: '上级单位2',
-        value: '2'
+        value: '上级单位2'
       },
       {
         label: '上级单位3',
-        value: '3'
+        value: '上级单位3'
       },
     ],
-    has_video: [
+    has_video_monitor: [
       {
         label: '有',
-        value: '1'
+        value: true
       },
       {
         label: '无',
-        value: '2'
+        value: false
       }
     ],
   };
@@ -145,7 +172,7 @@ export class NewCompanyPage {
       required: true
     },
     {
-      ID: 'manage_level',
+      ID: 'mgr_level',
       type: 4,
       name: '管理等级',
       value: '',
@@ -201,7 +228,7 @@ export class NewCompanyPage {
       // required: true
     },
     {
-      ID: 'has_video',
+      ID: 'has_video_monitor',
       type: 4,
       name: '是否有视频监控',
       value: '',

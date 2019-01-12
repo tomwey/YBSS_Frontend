@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { YBSS } from '../../provider/YBSS';
-import { elementEnd } from '@angular/core/src/render3/instructions';
-import { CommonSelectPageModule } from '../common-select/common-select.module';
+// import { elementEnd } from '@angular/core/src/render3/instructions';
+// import { CommonSelectPageModule } from '../common-select/common-select.module';
 import { Tools } from '../../provider/Tools';
 
 /**
@@ -39,9 +39,9 @@ export class HouseEditPage {
     this.controls.forEach(control => {
       if ((control.type == 4 || control.type == 5 || control.type == 6)) {
         let val = this.house[control.ID];
-        if (control.ID === "_type") {
-          val = this.house["type"];
-        }
+        // if (control.ID === "_type") {
+        //   val = this.house["type"];
+        // }
         if (control.ID === "house_use") {
           val = this.house[control.ID][0];
         }
@@ -54,13 +54,13 @@ export class HouseEditPage {
       } else if (control.type == 20) {
 
       } else {
-        if (control.ID === "_type") {
-          control.value = this.house["type"] || '';
-        } else {
-          // console.log(control.ID);
-          // console.log(this.house[control.ID]);
-          control.value = this.house[control.ID] || '';
-        }
+        // if (control.ID === "_type") {
+        //   control.value = this.house["type"] || '';
+        // } else {
+        // console.log(control.ID);
+        // console.log(this.house[control.ID]);
+        control.value = this.house[control.ID] || '';
+        // }
 
       }
     });

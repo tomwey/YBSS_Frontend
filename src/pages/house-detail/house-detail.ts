@@ -141,8 +141,12 @@ export class HouseDetailPage {
     this.navCtrl.push("NewPeoplePage", { house: this.house, id: id });
   }
 
-  addCompany() {
-    this.navCtrl.push("NewPeoplePage");
+  addCompany(item = null) {
+    let id = null;
+    if (item) {
+      id = item.id;
+    }
+    this.navCtrl.push("NewCompanyPage", { house: this.house, id: id });
   }
 
   showAlert(cb) {
