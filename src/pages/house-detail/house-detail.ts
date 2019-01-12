@@ -120,8 +120,12 @@ export class HouseDetailPage {
     }
   }
 
-  addProperty() {
-
+  addProperty(item = null) {
+    let id = null;
+    if (item) {
+      id = item.id;
+    }
+    this.navCtrl.push("NewPropertyPage", { house: this.house, id: id });
   }
 
   addDailyCheck() {
