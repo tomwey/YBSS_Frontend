@@ -189,7 +189,18 @@ export class NewDailyCheckPage {
           this.tools.showToast(`${control.name}不能为空`);
           return;
         }
-        obj[control.ID] = control.value || "";
+        if (control.ID === "has_man") {
+          if (control.value) {
+            obj[control.ID] = control.value === "有" ? true : false;
+          }
+        } else if (control.ID === "has_error") {
+          if (control.value) {
+            obj[control.ID] = control.value === "有" ? true : false;
+          }
+        } else {
+          obj[control.ID] = control.value || "";
+        }
+
       }
     });
 
