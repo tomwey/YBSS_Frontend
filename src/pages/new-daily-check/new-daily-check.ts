@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Store } from '../../provider/Store';
 import { Tools } from '../../provider/Tools';
+import { YBSS } from '../../provider/YBSS';
 
 /**
  * Generated class for the NewDailyCheckPage page.
@@ -19,39 +20,48 @@ export class NewDailyCheckPage {
 
   selectOptionsData: any = {};
   controls: any = [];
-  address: any = null;
+
+  house: any;
+  obj_id: any;
+  type: any;
+
   constructor(public navCtrl: NavController,
     private store: Store,
     private tools: Tools,
+    private ybss: YBSS,
     public navParams: NavParams) {
-    this.address = this.navParams.data.address;
+    // this.address = this.navParams.data.address;
+    this.house = this.navParams.data.house;
+    this.obj_id = this.navParams.data.id;
+    this.type = this.navParams.data.type;
 
     if (this.navParams.data && this.navParams.data.type == '1') {
       // 房屋日常检查
       this.controls = [
         {
-          ID: 'address',
-          type: 2,
-          name: '房屋详址',
-          value: '',
-          // required: true
+          ID: "images",
+          type: 20,
+          name: "检查照片",
+          value: null,
+          multiple: true,
+          required: true
         },
         {
-          ID: 'has_people',
+          ID: 'has_man',
           type: 4,
           name: '是否有居住人员',
           value: '',
           required: true
         },
         {
-          ID: 'has_exception',
+          ID: 'has_error',
           type: 4,
           name: '有无异常情况',
           value: '',
           // required: true
         },
         {
-          ID: 'check_date',
+          ID: 'check_on',
           type: 7,
           name: '检查日期',
           value: '',
@@ -67,30 +77,38 @@ export class NewDailyCheckPage {
       ];
 
       this.selectOptionsData = {
-        has_people: [
+        has_man: [
           {
             label: '无',
-            value: '0'
+            value: false
           },
           {
             label: '有',
-            value: '1'
+            value: true
           },
         ],
-        has_exception: [
+        has_error: [
           {
             label: '无',
-            value: '0'
+            value: false
           },
           {
             label: '有',
-            value: '1'
+            value: true
           },
         ]
       };
     } else {
       // 单位日常检查
       this.controls = [
+        {
+          ID: "images",
+          type: 20,
+          name: "检查照片",
+          value: null,
+          multiple: true,
+          required: true
+        },
         {
           ID: 'name',
           type: 2,
@@ -99,14 +117,14 @@ export class NewDailyCheckPage {
           required: true
         },
         {
-          ID: 'has_exception',
+          ID: 'has_error',
           type: 4,
           name: '有无异常情况',
           value: '',
           // required: true
         },
         {
-          ID: 'check_date',
+          ID: 'check_on',
           type: 7,
           name: '检查日期',
           value: '',
@@ -122,14 +140,14 @@ export class NewDailyCheckPage {
       ];
 
       this.selectOptionsData = {
-        has_exception: [
+        has_error: [
           {
             label: '无',
-            value: '0'
+            value: false
           },
           {
             label: '有',
-            value: '1'
+            value: true
           },
         ]
       };
@@ -153,13 +171,46 @@ export class NewDailyCheckPage {
   }
 
   save() {
-    // console.log(this.controls);
+
+    const fileControl = this.controls[0];
+    let files;
+    if (fileControl.required) {
+      files = this.controls[0].value;
+      if (!files || files.length === 0) {
+        this.tools.showToast(`${fileControl.name}不能为空`);
+        return;
+      }
+    }
+
     let obj = {};
     this.controls.forEach(control => {
-      obj[control.ID] = control.value || "";
+      if (control.ID !== "images") {
+        if (control.required && !control.value) {
+          this.tools.showToast(`${control.name}不能为空`);
+          return;
+        }
+        obj[control.ID] = control.value || "";
+      }
     });
-    this.store.addCheck(this.address.ID, obj, () => {
-      this.tools.showToast("录入成功");
+
+    if (this.type !== "1") {
+      obj["has_man"] = true; // 给一个默认值
+    }
+    // this.store.addItem(obj, "peoples", () => {
+    //   this.tools.showToast("录入成功");
+    //   this.navCtrl.pop();
+    // });
+    // this.store.addPeople(this.address.ID, "1", obj, () => {
+    //   this.tools.showToast("录入成功");
+    //   this.navCtrl.pop();
+    // });
+    this.ybss.SaveObj(this.house.id, this.obj_id, "daily_check", obj, files, (res) => {
+      for (const key in res) {
+        if (res.hasOwnProperty(key)) {
+          const element = res[key];
+          this.house[key] = element;
+        }
+      }
       this.navCtrl.pop();
     });
   }

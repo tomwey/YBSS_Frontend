@@ -20,7 +20,7 @@
       <!-- <ion-input *ngIf="item.type == 20" type="file" placeholder="" (ionChange)="selectFiles($event);"></ion-input> -->
       <div class="custom-select-control" tappable (tap)="uploadFile(item);" item-content *ngIf="item.type == 20">
         <input type="file" multiple="item.multiple" (change)="selectedFiles($event)" style="display: none" #fileInput>
-        {{fileValueFromItem(item)}}
+        <span class="filenames" text-wrap>{{fileValueFromItem(item)}}</span>
         <ion-icon name="ios-arrow-forward-outline"></ion-icon>
       </div>
 

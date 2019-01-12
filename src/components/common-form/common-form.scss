@@ -12,6 +12,11 @@ common-form {
                 float: right;
                 margin-top: 3px;
             }
+
+            .filenames {
+                display: inline-block;
+                max-width: calc(100% - 50px);
+            }
         }
         
         h2 {

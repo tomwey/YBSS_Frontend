@@ -55,9 +55,10 @@ export class YBSS {
     SaveObj(house_id, obj_id, className, payload, files = null, callback) {
         let body = new FormData();
         if (files) {
-            files.forEach(file => {
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
                 body.append('files[][file]', file);
-            });
+            }
         }
         if (obj_id) {
             body.append("obj_id", obj_id);

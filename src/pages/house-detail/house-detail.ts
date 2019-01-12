@@ -128,9 +128,13 @@ export class HouseDetailPage {
     this.navCtrl.push("NewPropertyPage", { house: this.house, id: id });
   }
 
-  addDailyCheck() {
+  addDailyCheck(item = null) {
     // let modal = this.modalCtrl.create("NewDailyCheckPage")
-    this.navCtrl.push("NewDailyCheckPage");
+    let id = null;
+    if (item) {
+      id = item.id;
+    }
+    this.navCtrl.push("NewDailyCheckPage", { house: this.house, id: id, type: this.houseUse === 2 ? "0" : "1" });
   }
 
   formatDate(time) {

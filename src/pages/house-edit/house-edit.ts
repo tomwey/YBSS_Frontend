@@ -81,11 +81,13 @@ export class HouseEditPage {
 
     let payload = {};
     this.controls.forEach(control => {
-      if (control.required && !control.value) {
-        this.tools.showToast(`${control.name}不能为空`);
-        return;
-      }
+
       if (control.ID !== "image") {
+        if (control.required && !control.value) {
+          this.tools.showToast(`${control.name}不能为空`);
+          return;
+        }
+
         if (control.ID === "house_use") {
           payload["house_use"] = [control.value || ""];
         } else {
