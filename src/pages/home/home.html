@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content style="position: relative;">
-  <div class="scan-wrap" tappable (click)="scan();">
+  <div class="scan-wrap" [hidden]="hideScan" tappable (click)="scan();">
     <p>点击扫门牌二维码</p>
     <img src="assets/imgs/img_scan.png">
   </div>

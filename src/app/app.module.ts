@@ -27,6 +27,8 @@ import { SyncPage } from '../pages/sync/sync';
 import { Store } from '../provider/Store';
 import { YBSS } from '../provider/YBSS';
 
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -71,6 +73,7 @@ import { YBSS } from '../provider/YBSS';
     iOSFixedScrollFreeze,
     Store,
     YBSS,
+    QRScanner
   ]
 })
 export class AppModule { }

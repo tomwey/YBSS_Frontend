@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { /*IonicPage, */NavController, NavParams, Content, App } from 'ionic-angular';
+import { /*IonicPage, */NavController, NavParams, Content, App, ModalController } from 'ionic-angular';
 // import { ApiService } from '../../provider/api-service';
 import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 // import { Users } from '../../provider/Users';
-import { ApiService } from '../../provider/api-service';
+// import { ApiService } from '../../provider/api-service';
 import { YBSS } from '../../provider/YBSS';
 // import { ComponentsModule } from '../../components/components.module';
 // import { Tools } from '../../provider/Tools';
@@ -26,14 +26,17 @@ export class HomePage {
   @ViewChild(Content) content: Content;
 
   addresses: any = [];
+  hideScan: boolean = false;
+
   constructor(public navCtrl: NavController,
     // private api: ApiService,
     private app: App,
+    private modalCtrl: ModalController,
     // private users: Users,
     // private tools: Tools,
     // private modalCtrl: ModalController,
     // private alertCtrl: AlertController,
-    private api: ApiService,
+    // private api: ApiService,
     private ybss: YBSS,
     private iosFixed: iOSFixedScrollFreeze,
     public navParams: NavParams) {
@@ -42,38 +45,50 @@ export class HomePage {
   ionViewDidLoad() {
     // console.log('ionViewDidLoad HomePage');
     this.iosFixed.fixedScrollFreeze(this.content);
-    this.api.GetLocalData("assets/configs/addresses.json", (data) => {
-      // console.log(data);
-      this.addresses = data;
-    });
+    // this.api.GetLocalData("assets/configs/addresses.json", (data) => {
+    //   // console.log(data);
+    //   this.addresses = data;
+    // });
   }
 
   forwardTo(section) {
     this.app.getRootNavs()[0].push(section.page, section.params);
   }
 
-  scan() {
-    // console.log(123);
-    // let index = Math.floor(Math.random() * 100);
-    // index = index % this.addresses.length;
-    // // console.log(index);
-    // if (index < this.addresses.length && index >= 0) {
-    //   let address = this.addresses[index];
-    //   // console.log(address);
-    //   if (!address.children) {
-    //     this.app.getRootNavs()[0].push("AddressInfoPage", address);
-    //   } else {
-    //     this.app.getRootNavs()[0].push("AddressListPage", address);
-    //   }
-    // }
-    let arr = ["4c423e23ee4544d68a9fb5833add5fa6", "50ade165c95c43caa06ac48242e089b9"];
-    let index = Math.floor(Math.random() * 100);
-    let addrid = arr[index % arr.length];
+  handleScanResult(text) {
+    let arr = text.split("；");
+    if (arr.length > 1) {
+      let address = arr[1];
+      let arr2 = address.split("：");
+      if (arr2.length > 1) {
+        let addrid = arr2[1];
 
-    this.ybss.GetHouse(addrid, (res) => {
-      console.log(res);
-      this.app.getRootNavs()[0].push("HouseDetailPage", res);
+        this.ybss.GetHouse(addrid, (res) => {
+          // console.log(res);
+          this.app.getRootNavs()[0].push("HouseDetailPage", res);
+        });
+      }
+    }
+  }
+
+  scan() {
+    this.hideScan = true;
+
+    let modal = this.modalCtrl.create("ScanPage");
+    modal.onWillDismiss((text) => {
+      this.hideScan = false;
+      // if (text) {
+      //   this.handleScanResult(text);
+      // }
+    })
+
+    modal.onDidDismiss((text) => {
+      // this.hideScan = false;
+      if (text) {
+        this.handleScanResult(text);
+      }
     });
+    modal.present();
   }
 
   sections: any = [
