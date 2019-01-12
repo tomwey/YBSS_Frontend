@@ -67,6 +67,21 @@
     </div>
   </div>
 
+  <!-- <div class="actions-wrap">
+    <ion-toolbar color="white">
+      <ion-segment [(ngModel)]="oper_type" mode="md" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="{{u.ID}}" *ngFor="let u of oper_types">
+          {{u.name}}
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+    <div class="content">
+      <ion-list>
+        <ion-item *ngFor="let item of data"></ion-item>
+      </ion-list>
+    </div>
+  </div> -->
+
   <div class="box">
     <ion-item class="head-item">产权人信息
       <button ion-button item-right (click)="addProperty();">新增</button>
@@ -143,11 +158,11 @@
     <ion-item class="head-item">实有单位<button ion-button item-right (click)="addCompany();">新增</button></ion-item>
     <div class="list-box">
       <ion-list>
-        <ion-item *ngFor="let item of house.companies">
+        <button ion-item *ngFor="let item of house.companies" (click)="gotoCompany(item);">
           <h2>{{item.name}}&emsp;{{item.comp_no3}}</h2>
           <button ion-button item-right (click)="removeItem($event, item, 'company');" *ngIf="item.state === 0" color="danger">注销</button>
           <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
-        </ion-item>
+        </button>
       </ion-list>
       <div class="empty-box" *ngIf="house.companies.length === 0">
         暂无实有单位
@@ -170,20 +185,8 @@
     </div>
   </div>
 
-  <!-- <div class="actions-wrap">
-    <ion-toolbar color="white">
-      <ion-segment [(ngModel)]="oper_type" mode="md" (ionChange)="segmentChanged($event)">
-        <ion-segment-button value="{{u.ID}}" *ngFor="let u of oper_types">
-          {{u.name}}
-        </ion-segment-button>
-      </ion-segment>
-    </ion-toolbar>
-    <div class="content">
-      <ion-list>
-        <ion-item *ngFor="let item of data"></ion-item>
-      </ion-list>
-    </div>
-  </div> -->
+
+
   <!-- <div class="address-bg">
     <h2 text-wrap>{{house.address}}</h2>
   </div>

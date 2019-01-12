@@ -80,4 +80,19 @@ export class YBSS {
         });
     }
 
+    SaveEmp(company_id, obj_id, payload, callback) {
+        this.users.token().then(token => {
+            this.api.POST(`ybss/company/save_emp`,
+                { token: token, id: company_id, emp_id: obj_id, payload: JSON.stringify(payload) })
+                .then(res => {
+                    if (callback) {
+                        callback(res["data"]);
+                    }
+                })
+                .catch(error => {
+                    this.tools.showToast("服务器超时，请重试");
+                });
+        });
+    }
+
 }

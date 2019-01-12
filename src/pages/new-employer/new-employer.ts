@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Store } from '../../provider/Store';
 import { Tools } from '../../provider/Tools';
+import { YBSS } from '../../provider/YBSS';
 
 /**
  * Generated class for the NewEmployerPage page.
@@ -16,16 +17,19 @@ import { Tools } from '../../provider/Tools';
   templateUrl: 'new-employer.html',
 })
 export class NewEmployerPage {
-  address: any = null;
+  // address: any = null;
+  company: any;
   constructor(public navCtrl: NavController,
     private store: Store,
     private tools: Tools,
+    private ybss: YBSS,
     public navParams: NavParams) {
-    this.address = this.navParams.data;
+    // this.address = this.navParams.data;
+    this.company = this.navParams.data.company;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NewEmployerPage');
+    // console.log('ionViewDidLoad NewEmployerPage');
   }
 
   controlSelect(control) {
@@ -41,13 +45,22 @@ export class NewEmployerPage {
   }
 
   save() {
-    // console.log(this.controls);
     let obj = {};
     this.controls.forEach(control => {
+      if (control.required && !control.value) {
+        this.tools.showToast(`${control.name}不能为空`);
+        return;
+      }
       obj[control.ID] = control.value || "";
     });
-    this.store.addPeople(this.address.ID, "2", obj, () => {
-      this.tools.showToast("录入成功");
+
+    this.ybss.SaveEmp(this.company.id, null, obj, (res) => {
+      for (const key in res) {
+        if (res.hasOwnProperty(key)) {
+          const element = res[key];
+          this.company[key] = element;
+        }
+      }
       this.navCtrl.pop();
     });
   }
@@ -56,118 +69,130 @@ export class NewEmployerPage {
     card_type: [
       {
         label: '居民身份证',
-        value: '1'
+        value: '居民身份证'
       },
       {
         label: '护照',
-        value: '2'
+        value: '护照'
       },
       {
         label: '军官证',
-        value: '3'
+        value: '军官证'
+      },
+    ],
+    job_type: [
+      {
+        label: '法定代表人',
+        value: '法定代表人',
+      },
+      {
+        label: '负责人',
+        value: '负责人',
+      },
+      {
+        label: '保卫人员',
+        value: '保卫人员',
+      },
+      {
+        label: '保卫负责人',
+        value: '保卫负责人',
+      },
+      {
+        label: '一般从业人员',
+        value: '一般从业人员',
       },
     ],
     sex: [
       {
         label: '男',
-        value: '1'
+        value: '男'
       },
       {
         label: '女',
-        value: '2'
+        value: '女'
       },
     ],
-    mz_type: [
+    nation: [
       {
         label: '汉族',
-        value: '1'
+        value: '汉族'
       },
       {
         label: '藏族',
-        value: '2'
+        value: '藏族'
       },
       {
         label: '维族',
-        value: '3'
+        value: '维族'
       },
     ],
 
     country: [
       {
         label: '中国',
-        value: '1'
+        value: '中国'
       },
       {
-        label: '美国',
-        value: '2'
+        label: '中国香港',
+        value: '中国香港'
       },
       {
-        label: '日本',
-        value: '3'
+        label: '中国澳门',
+        value: '中国澳门'
       },
     ],
-    jg_type: [
+    native_place: [
       {
         label: '籍贯1',
-        value: '1'
+        value: '籍贯1'
       },
       {
         label: '籍贯2',
-        value: '2'
+        value: '籍贯2'
       },
       {
         label: '籍贯3',
-        value: '3'
+        value: '籍贯3'
       },
     ],
-    job_type: [
+    communicate_type: [
       {
         label: '类别1',
-        value: '1'
+        value: '类别1'
       },
       {
         label: '类别2',
-        value: '2'
-      }
-    ],
-    phone_type: [
-      {
-        label: '类别1',
-        value: '1'
-      },
-      {
-        label: '类别2',
-        value: '2'
+        value: '类别2'
       }
     ],
     contact_type: [
       {
         label: '类别1',
-        value: '1'
+        value: '类别1'
       },
       {
         label: '类别2',
-        value: '2'
+        value: '类别2'
       }
     ],
-    cj_reason: [
+    caiji_reason: [
       {
-        label: '类别1',
-        value: '1'
+        label: '情况1',
+        value: '情况1'
       },
       {
-        label: '类别2',
-        value: '2'
+        label: '情况2',
+        value: '情况2'
       }
     ],
-    cj_man_type: [
+    caiji_type: [
       {
         label: '类别1',
-        value: '1'
+        value: '类别1'
       },
       {
         label: '类别2',
-        value: '2'
+        value: '类别2'
       }
     ],
   };
@@ -212,7 +237,7 @@ export class NewEmployerPage {
       placeholder: '此项复用后，不可编辑'
     },
     {
-      ID: 'mz_type',
+      ID: 'nation',
       type: 4,
       name: '民族',
       value: '',
@@ -227,7 +252,7 @@ export class NewEmployerPage {
       required: true
     },
     {
-      ID: 'jg_type',
+      ID: 'native_place',
       type: 4,
       name: '籍贯',
       value: '',
@@ -249,20 +274,20 @@ export class NewEmployerPage {
       // required: true
     },
     {
-      ID: 'job',
+      ID: 'position',
       type: 2,
       name: '所在岗位',
       value: '',
       // required: true
     },
     {
-      ID: 'phone',
+      ID: 'telephone',
       type: 8,
       name: '联系电话',
       value: '',
     },
     {
-      ID: 'phone_type',
+      ID: 'communicate_type',
       type: 4,
       name: '通讯类型',
       value: '',
@@ -274,7 +299,7 @@ export class NewEmployerPage {
       value: '',
     },
     {
-      ID: 'start_date',
+      ID: 'begin_date',
       type: 7,
       name: '开始日期',
       value: '',
@@ -286,14 +311,14 @@ export class NewEmployerPage {
       value: '',
     },
     {
-      ID: 'cj_reason',
+      ID: 'caiji_reason',
       type: 4,
       name: '采集依据',
       value: '',
       required: true
     },
     {
-      ID: 'cj_man_type',
+      ID: 'caiji_type',
       type: 4,
       name: '采集人类别',
       value: '',
