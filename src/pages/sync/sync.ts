@@ -21,28 +21,28 @@ export class SyncPage {
   ionViewDidLoad() {
     // console.log('ionViewDidLoad SyncPage');
   }
-
+  error: any = "暂无数据"
   data: any = [
-    {
-      address: '市中区西一路33号',
-      change: '修改房屋信息',
-      time: '18-10-10 12:40'
-    },
-    {
-      address: '市中区西一路33号',
-      change: '新增实有人',
-      time: '18-10-10 12:40'
-    },
-    {
-      address: '市中区西一路33号',
-      change: '新增实有单位',
-      time: '18-10-10 12:40'
-    },
-    {
-      address: '市中区西一路33号',
-      change: '日常检查',
-      time: '18-10-10 12:40'
-    },
+    // {
+    //   address: '市中区西一路33号',
+    //   change: '修改房屋信息',
+    //   time: '18-10-10 12:40'
+    // },
+    // {
+    //   address: '市中区西一路33号',
+    //   change: '新增实有人',
+    //   time: '18-10-10 12:40'
+    // },
+    // {
+    //   address: '市中区西一路33号',
+    //   change: '新增实有单位',
+    //   time: '18-10-10 12:40'
+    // },
+    // {
+    //   address: '市中区西一路33号',
+    //   change: '日常检查',
+    //   time: '18-10-10 12:40'
+    // },
   ];
 
 }

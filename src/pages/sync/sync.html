@@ -16,6 +16,7 @@
 </ion-header>
 
 <ion-content>
+  <div class="empty-error-box" *ngIf="!!error">{{error}}</div>
   <ion-list>
     <ion-item *ngFor="let item of data">
       <h2>{{item.address}}</h2>
