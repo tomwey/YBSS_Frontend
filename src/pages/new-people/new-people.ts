@@ -53,13 +53,24 @@ export class NewPeoplePage {
   save() {
     // console.log(this.controls);
     let obj = {};
-    this.controls.forEach(control => {
+    // this.controls.forEach(control => {
+    //   if (control.required && !control.value) {
+    //     this.tools.showToast(`${control.name}不能为空`);
+    //     return;
+    //   }
+    //   obj[control.ID] = control.value || "";
+    // });
+
+    for (let i = 0; i < this.controls.length; i++) {
+      let control = this.controls[i];
+
       if (control.required && !control.value) {
         this.tools.showToast(`${control.name}不能为空`);
         return;
       }
       obj[control.ID] = control.value || "";
-    });
+    }
+
     // this.store.addItem(obj, "peoples", () => {
     //   this.tools.showToast("录入成功");
     //   this.navCtrl.pop();

@@ -176,7 +176,7 @@ export class NewDailyCheckPage {
     let files;
     if (fileControl.required) {
       files = this.controls[0].value;
-      console.log(files);
+      // console.log(files);
       if (!files || files.length === 0) {
         this.tools.showToast(`${fileControl.name}不能为空`);
         return;
@@ -184,17 +184,28 @@ export class NewDailyCheckPage {
     }
 
     let obj = {};
-    this.controls.forEach(control => {
+    // this.controls.forEach(control => {
+    //   if (control.ID !== "images") {
+    //     if (control.required && !control.value) {
+    //       this.tools.showToast(`${control.name}不能为空`);
+    //       return;
+    //     }
+
+    //     obj[control.ID] = control.value || "";
+
+    //   }
+    // });
+
+    for (let i = 0; i < this.controls.length; i++) {
+      let control = this.controls[i];
       if (control.ID !== "images") {
         if (control.required && !control.value) {
           this.tools.showToast(`${control.name}不能为空`);
           return;
         }
-
         obj[control.ID] = control.value || "";
-
       }
-    });
+    }
 
     if (this.type !== "1") {
       obj["has_man"] = "有"; // 给一个默认值

@@ -46,13 +46,23 @@ export class NewEmployerPage {
 
   save() {
     let obj = {};
-    this.controls.forEach(control => {
+    // this.controls.forEach(control => {
+    //   if (control.required && !control.value) {
+    //     this.tools.showToast(`${control.name}不能为空`);
+    //     return;
+    //   }
+    //   obj[control.ID] = control.value || "";
+    // });
+
+    for (let i = 0; i < this.controls.length; i++) {
+      let control = this.controls[i];
+
       if (control.required && !control.value) {
         this.tools.showToast(`${control.name}不能为空`);
         return;
       }
       obj[control.ID] = control.value || "";
-    });
+    }
 
     this.ybss.SaveEmp(this.company.id, null, obj, (res) => {
       for (const key in res) {
