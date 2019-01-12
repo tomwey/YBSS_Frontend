@@ -72,7 +72,14 @@
       <button ion-button item-right (click)="addProperty();">新增</button>
     </ion-item>
     <div class="list-box">
-      <ion-list></ion-list>
+      <ion-list>
+        <ion-item *ngFor="let item of house.properties">
+          <h2>{{item.comp_name || item.name}}</h2>
+          <p>产权类型: {{item._type}}</p>
+          <button ion-button item-right *ngIf="item.state === 0" color="danger">注销</button>
+          <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
+        </ion-item>
+      </ion-list>
       <div class="empty-box" *ngIf="house.properties.length === 0">
         暂无产权人信息
       </div>
@@ -85,30 +92,28 @@
     </ion-item>
     <div class="list-box">
       <ion-list>
-        <ion-item *ngFor="let check of house.checks">
-          <h2>{{check.memo}}</h2>
-          <p>
-            <ion-badge>{{check.has_man ? "有" : "无"}}居住人员</ion-badge>
-            <ion-badge>{{check.has_error ? "有" : "无"}}异常</ion-badge>
-          </p>
-          <div class="images">
-            <div class="img-box" *ngFor="let img of check.images">
-              <img [src]="img">
+        <div *ngFor="let check of house.checks">
+          <ion-item>
+            <h2>{{check.memo}}</h2>
+            <p>
+              <ion-badge>{{check.has_man ? "有" : "无"}}居住人员</ion-badge>
+              <ion-badge>{{check.has_error ? "有" : "无"}}异常</ion-badge>
+            </p>
+            <div class="images">
+              <div class="img-box" *ngFor="let img of check.images">
+                <img [src]="img">
+              </div>
             </div>
-          </div>
-          <table class="table">
-            <tr>
-              <td width="80%">
-                <p>检查日期: {{check.check_on}}</p>
-                <p *ngIf="check.name">单位名称: {{check.name}}</p>
-              </td>
-              <td width="20%" style="text-align: right;">
-                <button ion-button color="danger" small *ngIf="check.state === 0">注销</button>
-                <ion-note *ngIf="check.state === 1">已注销</ion-note>
-              </td>
-            </tr>
-          </table>
-        </ion-item>
+          </ion-item>
+          <ion-item>
+            <div class="">
+              <p>检查日期: {{check.check_on}}</p>
+              <p *ngIf="check.name">单位名称: {{check.name}}</p>
+            </div>
+            <button ion-button color="danger" item-right *ngIf="check.state === 0">注销</button>
+            <ion-note *ngIf="check.state === 1" item-right>已注销</ion-note>
+          </ion-item>
+        </div>
       </ion-list>
       <div class="empty-box" *ngIf="house.checks.length === 0">
         暂无日常检查
@@ -121,7 +126,13 @@
       <button ion-button item-right (click)="savePerson();">新增</button>
     </ion-item>
     <div class="list-box">
-      <ion-list></ion-list>
+      <ion-list>
+        <ion-item *ngFor="let item of house.people">
+          <h2>{{item.name}}&emsp;{{item.card_no}}</h2>
+          <button ion-button item-right *ngIf="item.state === 0" color="danger">注销</button>
+          <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
+        </ion-item>
+      </ion-list>
       <div class="empty-box" *ngIf="house.people.length === 0">
         暂无居住人口
       </div>
@@ -131,7 +142,13 @@
   <div class="box" *ngIf="houseUse === 2">
     <ion-item class="head-item">实有单位<button ion-button item-right (click)="addCompany();">新增</button></ion-item>
     <div class="list-box">
-      <ion-list></ion-list>
+      <ion-list>
+        <ion-item *ngFor="let item of house.companies">
+          <h2>{{item.name}}&emsp;{{item.comp_no3}}</h2>
+          <button ion-button item-right *ngIf="item.state === 0" color="danger">注销</button>
+          <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
+        </ion-item>
+      </ion-list>
       <div class="empty-box" *ngIf="house.companies.length === 0">
         暂无实有单位
       </div>
@@ -141,7 +158,12 @@
   <div class="box">
     <ion-item class="head-item">操作日志</ion-item>
     <div class="list-box">
-      <ion-list></ion-list>
+      <ion-list>
+        <ion-item *ngFor="let log of house.logs">
+          {{log.title}}
+          <ion-note item-right>{{log.begin_time}}</ion-note>
+        </ion-item>
+      </ion-list>
       <div class="empty-box" *ngIf="house.logs.length === 0">
         暂无操作日志
       </div>
