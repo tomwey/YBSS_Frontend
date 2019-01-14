@@ -1,0 +1,94 @@
+page-address-catalog {
+    .address {
+        background: color($colors, primary);
+        color: #fff;
+        font-size: 18px;
+        padding: 0 30px 20px;
+        // text-align: center;
+    }
+    .main-wrap {
+        display: flex;
+        .sidebar {
+            flex: 0 0 80px;
+            width: 80px;
+            // padding: 10px 0;
+            .menu-item {
+                background: #f7f7f7;
+                padding: 15px 10px;
+                font-size: 14px;
+                color: #333;
+                text-align: center;
+                border-bottom: 0.5px solid #fff;
+                &.active {
+                    background: #fff;
+                    color: color($colors, primary);
+                }
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+        }
+
+        .main-content {
+            flex: 1;
+            width: calc(100% - 80px);
+            overflow: hidden;
+            background: transparent;
+            padding: 0 10px;
+
+            // .toolbar .segment-md {
+            //     border-bottom: 0;
+            // }
+
+            .units {
+                padding: 0 10px;
+                width: 100%;
+                overflow-x: scroll;
+                border-bottom: 0.5px solid #f2f2f2;
+                text-align: center;
+                .unit {
+                    display: inline-block;
+                    padding: 10px;
+                    border-bottom: 2px solid #fff;
+                    font-size: 14px;
+                    color: #999;
+                    margin-right: 10px;
+                    font-weight: 700;
+                    &.active {
+                        border-bottom-color: color($colors, primary);
+                        color: color($colors, primary);
+                    }
+                }
+            }
+
+            // .toolbar-ios-white .toolbar-background-ios {
+            //     background: transparent;
+            // }
+
+            .rooms {
+                display: flex;
+                // margin-top: 10px;
+            }
+
+            .room-box {
+                flex: 0 0 33.33333333%;
+                width: 33.33333333%;
+                background: #fff;
+                padding: 10px;
+                text-align: center;
+                .room {
+                    // width: 
+                    width: 60px;
+                    height: 44px;
+                    line-height: 44px;
+                    border-radius: 4px;
+                    background: #f9f9f9;
+                    font-size: 14px;
+                    color: #333;
+                    margin: 0 auto;
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}

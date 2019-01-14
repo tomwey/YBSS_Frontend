@@ -1,0 +1,49 @@
+<!--
+  Generated template for the AddressCatalogPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar color="navbar">
+    <ion-title>详情</ion-title>
+  </ion-navbar>
+  <div class="address" *ngIf="!!address">
+    {{address}}
+  </div>
+</ion-header>
+
+<ion-content>
+
+  <div class="main-wrap">
+    <div class="sidebar">
+      <ion-list>
+        <div tappable [class.active]="currBuilding === item" (click)="changeBuilding(item);" *ngFor="let item of buildings"
+          class="menu-item">
+          {{item}}
+        </div>
+      </ion-list>
+    </div>
+    <div class="main-content">
+      <div class="units">
+        <span class="unit" tappable (click)="changeUnit(unit);" [class.active]="currUnit === unit" *ngFor="let unit of units">
+          {{unit}}
+        </span>
+        <!-- <ion-toolbar color="white">
+          <ion-segment [(ngModel)]="currUnit" mode="md" [class.scrollable]="units.length > 7" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="{{u}}" *ngFor="let u of units">
+              {{u}}
+            </ion-segment-button>
+          </ion-segment>
+        </ion-toolbar> -->
+      </div>
+      <div class="rooms">
+        <div class="room-box" *ngFor="let room of rooms">
+          <div class="room" tappable (click)="gotoHouse(room);">{{room}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

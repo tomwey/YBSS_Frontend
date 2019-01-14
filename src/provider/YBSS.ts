@@ -31,6 +31,23 @@ export class YBSS {
         });
     }
 
+    GetAddress(addrid, callback) {
+        this.users.token().then(token => {
+            this.api.GET("ybss/scan", { token: token, addr_id: addrid })
+                .then(data => {
+                    // console.log(data);
+                    if (data && data['data']) {
+                        if (callback) {
+                            callback(data['data']);
+                        }
+                    }
+                })
+                .catch(error => {
+                    this.tools.showToast(error.message || "服务器出错了~");
+                });
+        });
+    }
+
     UpdateHouse(house_id, image, payload, callback) {
         let body = new FormData();
         if (image) {

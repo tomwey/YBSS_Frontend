@@ -70,25 +70,32 @@ export class HomePage {
       }
     }
   }
+  /*
+    scan() {
+      this.hideScan = true;
+  
+      let modal = this.modalCtrl.create("ScanPage");
+      modal.onWillDismiss((text) => {
+        this.hideScan = false;
+        // if (text) {
+        //   this.handleScanResult(text);
+        // }
+      })
+  
+      modal.onDidDismiss((text) => {
+        // this.hideScan = false;
+        if (text) {
+          this.handleScanResult(text);
+        }
+      });
+      modal.present();
+    }*/
 
   scan() {
-    this.hideScan = true;
-
-    let modal = this.modalCtrl.create("ScanPage");
-    modal.onWillDismiss((text) => {
-      this.hideScan = false;
-      // if (text) {
-      //   this.handleScanResult(text);
-      // }
-    })
-
-    modal.onDidDismiss((text) => {
-      // this.hideScan = false;
-      if (text) {
-        this.handleScanResult(text);
-      }
+    this.ybss.GetAddress("6aec7fd56a434418a393abb1bd0eb74a", res => {
+      this.app.getRootNavs()[0].push("AddressCatalogPage", { addr_info: res });
     });
-    modal.present();
+
   }
 
   sections: any = [
