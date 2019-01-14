@@ -71,12 +71,7 @@ export class YBSS {
 
     SaveObj(house_id, obj_id, className, payload, files = null, callback) {
         let body = new FormData();
-        if (files) {
-            for (let i = 0; i < files.length; i++) {
-                let file = files[i];
-                body.append("files[][file]", file);
-            }
-        }
+
         if (obj_id) {
             body.append("obj_id", obj_id);
         }
@@ -85,15 +80,53 @@ export class YBSS {
         this.users.token().then(token => {
             body.append("id", house_id);
             body.append("token", token)
-            this.api.POST2(`ybss/house/${className}/save`, body)
-                .then(res => {
-                    if (callback) {
-                        callback(res["data"]);
-                    }
-                })
-                .catch(error => {
-                    this.tools.showToast("服务器超时，请重试");
+
+            if (files) {
+                this._addFiles(files, 0, body, () => {
+                    this.api.POST2(`ybss/house/${className}/save`, body)
+                        .then(res => {
+                            if (callback) {
+                                callback(res["data"]);
+                            }
+                        })
+                        .catch(error => {
+                            this.tools.showToast("服务器超时，请重试");
+                        });
                 });
+            } else {
+                this.api.POST2(`ybss/house/${className}/save`, body)
+                    .then(res => {
+                        if (callback) {
+                            callback(res["data"]);
+                        }
+                    })
+                    .catch(error => {
+                        this.tools.showToast("服务器超时，请重试");
+                    });
+            }
+        });
+    }
+
+    _addFiles(files, index, body: FormData, callback) {
+        if (index >= files.length) {
+            if (callback) {
+                callback();
+            }
+            return;
+        }
+
+        let fileUri = files[index];
+        window['resolveLocalFileSystemURL'](fileUri, (fileEntry) => {
+            fileEntry.file((file) => {
+                let reader = new FileReader();
+                reader.onloadend = (e) => {
+                    let the_file = new Blob([e.target['result']], { type: "image/jpeg" });
+                    body.append("files[][file]", the_file);
+                    // 递归调用
+                    this._addFiles(files, index + 1, body, callback);
+                };
+                reader.readAsArrayBuffer(file);
+            });
         });
     }
 

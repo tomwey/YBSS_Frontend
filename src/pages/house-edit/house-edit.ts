@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { YBSS } from '../../provider/YBSS';
-// import { elementEnd } from '@angular/core/src/render3/instructions';
-// import { CommonSelectPageModule } from '../common-select/common-select.module';
 import { Tools } from '../../provider/Tools';
 
 /**
@@ -39,9 +37,6 @@ export class HouseEditPage {
     this.controls.forEach(control => {
       if ((control.type == 4 || control.type == 5 || control.type == 6)) {
         let val = this.house[control.ID];
-        // if (control.ID === "_type") {
-        //   val = this.house["type"];
-        // }
         if (control.ID === "house_use") {
           val = this.house[control.ID][0];
         }
@@ -71,13 +66,13 @@ export class HouseEditPage {
   }
 
   save() {
-    let file = null;
-    if (this.controls[0].value) {
-      let files = this.controls[0].value;
-      if (files.length > 0) {
-        file = files[0];
-      }
-    }
+    // let file = null;
+    // if (this.controls[0].value) {
+    //   let files = this.controls[0].value;
+    //   if (files.length > 0) {
+    //     file = files[0];
+    //   }
+    // }
 
     let payload = {};
     for (let i = 0; i < this.controls.length; i++) {
@@ -96,33 +91,62 @@ export class HouseEditPage {
         }
       }
     }
-    // this.controls.forEach(control => {
 
-    //   if (control.ID !== "image") {
-    //     if (control.required && !control.value) {
-    //       this.tools.showToast(`${control.name}不能为空`);
-    //       return;
-    //     }
+    let files = this.controls[0].value;
+    let fileUri = null;
+    if (files && files.length > 0) {
+      fileUri = files[0];
+    }
 
-    //     if (control.ID === "house_use") {
-    //       payload["house_use"] = [control.value || ""];
-    //     } else {
-    //       payload[control.ID] = control.value || "";
-    //     }
-    //   }
-    // });
+    if (fileUri) {
+      window['resolveLocalFileSystemURL'](fileUri, (fileEntry) => {
+        fileEntry.file((file) => {
+          let reader = new FileReader();
+          reader.onloadend = (e) => {
+            let the_file = new Blob([e.target['result']], { type: "image/jpeg" });
 
-    this.ybss.UpdateHouse(this.house.id, file, payload, (res) => {
-      // console.log(res);
-      // this.house = res;
-      for (const key in res) {
-        if (res.hasOwnProperty(key)) {
-          const element = res[key];
-          this.house[key] = element;
+            this.ybss.UpdateHouse(this.house.id, the_file, payload, (res) => {
+              // console.log(res);
+              // this.house = res;
+              for (const key in res) {
+                if (res.hasOwnProperty(key)) {
+                  const element = res[key];
+                  this.house[key] = element;
+                }
+              }
+              this.navCtrl.pop();
+            });
+
+          };
+          reader.readAsArrayBuffer(file);
+        });
+      });
+
+      // callback(content);
+      // this.ybss.UpdateHouse(this.house.id, content, payload, (res) => {
+      //   // console.log(res);
+      //   // this.house = res;
+      //   for (const key in res) {
+      //     if (res.hasOwnProperty(key)) {
+      //       const element = res[key];
+      //       this.house[key] = element;
+      //     }
+      //   }
+      //   this.navCtrl.pop();
+      // });
+    } else {
+      this.ybss.UpdateHouse(this.house.id, null, payload, (res) => {
+        // console.log(res);
+        // this.house = res;
+        for (const key in res) {
+          if (res.hasOwnProperty(key)) {
+            const element = res[key];
+            this.house[key] = element;
+          }
         }
-      }
-      this.navCtrl.pop();
-    });
+        this.navCtrl.pop();
+      });
+    }
   }
 
   prepareOtherControls(control) {

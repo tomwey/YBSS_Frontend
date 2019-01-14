@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, Renderer, ViewChild, ElementRef } from '@angular/core';
-
+import { Camera } from '@ionic-native/camera';
+import { Tools } from '../../provider/Tools';
 /**
  * Generated class for the CommonFormComponent component.
  *
@@ -21,7 +22,9 @@ export class CommonFormComponent {
   @ViewChild('fileInput') fileInput: ElementRef;
 
   currentFileItem: any;
-  constructor(private renderer: Renderer) {
+  constructor(private renderer: Renderer,
+    private tools: Tools,
+    private camera: Camera) {
 
   }
 
@@ -48,10 +51,34 @@ export class CommonFormComponent {
   uploadFile(item) {
     this.currentFileItem = item;
 
-    let clickEvent: MouseEvent = new MouseEvent('click', { bubbles: true });
-    this.renderer.invokeElementMethod(
-      this.fileInput.nativeElement, "dispatchEvent", [clickEvent]
-    );
+    // let clickEvent: MouseEvent = new MouseEvent('click', { bubbles: true });
+    // this.renderer.invokeElementMethod(
+    //   this.fileInput.nativeElement, "dispatchEvent", [clickEvent]
+    // );
+    this.camera.getPicture({
+      quality: 90,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: true,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
+    }).then(imageURI => {
+      // alert(imageURI);
+      item.value = item.value || [];
+      item.value.push(imageURI);
+    }).catch(err => {
+      this.tools.showToast("设备不支持拍照");
+    });
+  }
+
+  removeImg(item, file) {
+    const files = item.value || [];
+    const index = files.indexOf(file);
+    if (index !== -1) {
+      files.splice(index, 1);
+      item.value = files;
+    }
   }
 
   selectedFiles(ev) {
@@ -68,15 +95,15 @@ export class CommonFormComponent {
 
   fileValueFromItem(item) {
     if (!item.value) {
-      return "选择文件";
+      return "点击拍照";
     } else {
-      const files = item.value || [];
-      let temp = [];
-      for (let i = 0; i < files.length; i++) {
-        let file = files[i];
-        temp.push(file.name);
-      }
-      return temp.join(",") || "选择文件";
+      // const files = item.value || [];
+      // let temp = [];
+      // for (let i = 0; i < files.length; i++) {
+      //   let file = files[i];
+      //   temp.push(file.name);
+      // }
+      return "已选择图片";//temp.join(",") || "选择文件";
     }
   }
 

@@ -1,5 +1,55 @@
 common-form {
     .common-form-box {
+        .custom-upload-control {
+            width: 100%;
+            padding: 15px;
+
+            .upload-box {
+                display: flex;
+                flex-wrap: wrap;
+
+                .image-box {
+                    flex: 0 0 50px;
+                    width: 50px;
+                    height: 50px;
+                    margin: 0 15px 15px 0;
+                    // margin-bottom: 10px;
+                    position: relative;
+                    .close-btn {
+                        position: absolute;
+                        top: -10px;
+                        right: -10px;
+                        display: block;
+                        // background: rgba(0,0,0,0.6);
+                        width: 28px;
+                        height: 28px;
+                        text-align: center;
+                        line-height: 28px;
+                        ion-icon {
+                            font-size: 26px;
+                            color: color($colors, primary);
+                        }
+                    }
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .upload-btn {
+                    flex: 0 0 50px;
+                    display: block;
+                    width: 50px;
+                    height: 50px;
+                    border: 0.5px solid #eee;
+                    text-align: center;
+                    line-height: 50px;
+                    color: #666;
+                    font-size: 28px;
+                }
+            }
+                        
+        }
         .custom-select-control {
             // background: red;
             width: 100%;

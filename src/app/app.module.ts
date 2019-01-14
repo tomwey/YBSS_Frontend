@@ -29,6 +29,9 @@ import { YBSS } from '../provider/YBSS';
 
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
+import { Camera } from '@ionic-native/camera';
+import { File } from '@ionic-native/file';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -73,7 +76,9 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
     iOSFixedScrollFreeze,
     Store,
     YBSS,
-    QRScanner
+    QRScanner,
+    Camera,
+    File
   ]
 })
 export class AppModule { }
