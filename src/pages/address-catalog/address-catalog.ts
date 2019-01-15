@@ -87,13 +87,14 @@ export class AddressCatalogPage {
       // this.rooms = this.unitHouses[this.currUnit];
     }
 
-    console.log(this.currUnit);
+    // console.log(this.currUnit);
 
     this.changeUnit(this.currUnit);
   }
 
   gotoHouse(room) {
     let house = this.roomNoHouses[`${this.currBuilding}-${this.currUnit}-${room}`];
+    house.address = `${this.address}${this.currBuilding}${this.currUnit}${room}`;
     this.navCtrl.push("HouseDetailPage", house);
   }
 

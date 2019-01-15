@@ -32,6 +32,8 @@ export class HouseDetailPage {
 
   houseUse: number = 1;
 
+  address: string;
+
   constructor(public navCtrl: NavController,
     // private store: Store,
     private alertCtrl: AlertController,
@@ -39,6 +41,8 @@ export class HouseDetailPage {
     private ybss: YBSS,
     public navParams: NavParams) {
     this.house = this.navParams.data;
+
+    this.address = this.house.address;
 
     this.prepareMenus();
     this.calcHouseUse();
