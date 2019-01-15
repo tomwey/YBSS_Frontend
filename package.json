@@ -51,6 +51,7 @@
     "devDependencies": {
         "@ionic/app-scripts": "3.1.9",
         "@types/core-js": "^2.5.0",
+        "ionic-img-viewer": "^2.9.0",
         "typescript": "~2.6.2"
     },
     "description": "An Ionic project",

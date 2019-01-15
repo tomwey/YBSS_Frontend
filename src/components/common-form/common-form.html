@@ -24,7 +24,7 @@
         <ion-icon name="ios-arrow-forward-outline"></ion-icon> -->
         <div class="upload-box">
           <div class="image-box" *ngFor="let img of item.value">
-            <img [src]="img">
+            <img [src]="img" imageViewer>
             <span class="close-btn" tappable (click)="removeImg(item, img);">
               <ion-icon name="md-close-circle"></ion-icon>
             </span>

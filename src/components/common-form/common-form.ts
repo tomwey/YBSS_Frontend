@@ -61,9 +61,9 @@ export class CommonFormComponent {
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      allowEdit: true,
-      targetWidth: item.imgWidth || 800,
-      targetHeight: item.imgHeight || 800,
+      allowEdit: false,
+      targetWidth: item.imgWidth || 1080,
+      targetHeight: item.imgHeight || 1920,
       saveToPhotoAlbum: false,
       correctOrientation: true
     }).then(imageURI => {
