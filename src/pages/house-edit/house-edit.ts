@@ -345,7 +345,9 @@ export class HouseEditPage {
       type: 20,
       name: "房屋图片",
       value: null,
-      required: false
+      required: false,
+      imgWidth: 1080,
+      imgHeight: 756
     },
     {
       ID: 'house_use',

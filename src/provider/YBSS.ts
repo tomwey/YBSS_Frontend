@@ -51,7 +51,7 @@ export class YBSS {
     UpdateHouse(house_id, image, payload, callback) {
         let body = new FormData();
         if (image) {
-            body.append("image", image)
+            body.append("image", image, 'image.jpg')
         }
         body.append("payload", JSON.stringify(payload))
         this.users.token().then(token => {
@@ -107,6 +107,25 @@ export class YBSS {
         });
     }
 
+    resolveFile(fileUri, body: FormData, callback) {
+        window['resolveLocalFileSystemURL'](fileUri, (fileEntry) => {
+            fileEntry.file((file) => {
+                let reader = new FileReader();
+                reader.onloadend = (e) => {
+                    let the_file = new Blob([e.target['result']], { type: "image/jpeg" });
+                    body.append("files", the_file, 'image.jpg');
+                    alert("123");
+                    if (callback) {
+                        callback();
+                    }
+                    // 递归调用
+                    // this._addFiles(files, index + 1, body, callback);
+                };
+                reader.readAsArrayBuffer(file);
+            });
+        });
+    }
+
     _addFiles(files, index, body: FormData, callback) {
         if (index >= files.length) {
             if (callback) {
@@ -116,12 +135,13 @@ export class YBSS {
         }
 
         let fileUri = files[index];
+        // alert(fileUri);
         window['resolveLocalFileSystemURL'](fileUri, (fileEntry) => {
             fileEntry.file((file) => {
                 let reader = new FileReader();
                 reader.onloadend = (e) => {
                     let the_file = new Blob([e.target['result']], { type: "image/jpeg" });
-                    body.append("files[][file]", the_file);
+                    body.append("files[][file]", the_file, `image${index}.jpg`);
                     // 递归调用
                     this._addFiles(files, index + 1, body, callback);
                 };

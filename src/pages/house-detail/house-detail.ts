@@ -57,12 +57,17 @@ export class HouseDetailPage {
   }
 
   calcHouseUse() {
-    if (this.house.house_use.indexOf("居住") !== -1) {
-      this.houseUse = 1;
-    } else if (this.house.house_use.indexOf("其他") !== -1) {
+    const arr = this.house.house_use;
+    if (!arr || arr.length === 0) {
       this.houseUse = 3;
     } else {
-      this.houseUse = 2;
+      if (arr.length === 1 && arr.indexOf("其他") !== -1) {
+        this.houseUse = 3;
+      } else if (arr.length === 1 && arr.indexOf("居住") !== -1) {
+        this.houseUse = 1;
+      } else {
+        this.houseUse = 2;
+      }
     }
   }
 

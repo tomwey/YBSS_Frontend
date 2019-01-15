@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { /*IonicPage, */NavController, NavParams, Content, App } from 'ionic-angular';
+import { /*IonicPage, */NavController, NavParams, Content, App, ModalController } from 'ionic-angular';
 // import { ApiService } from '../../provider/api-service';
 import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 // import { Users } from '../../provider/Users';
@@ -31,7 +31,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     // private api: ApiService,
     private app: App,
-    // private modalCtrl: ModalController,
+    private modalCtrl: ModalController,
     // private users: Users,
     // private tools: Tools,
     // private modalCtrl: ModalController,
@@ -63,40 +63,46 @@ export class HomePage {
       if (arr2.length > 1) {
         let addrid = arr2[1];
 
-        this.ybss.GetHouse(addrid, (res) => {
+        this.ybss.GetAddress(addrid, (res) => {
           // console.log(res);
-          this.app.getRootNavs()[0].push("HouseDetailPage", res);
+          if (Array.isArray(res)) {
+            // 有下级地址
+            this.app.getRootNavs()[0].push("AddressCatalogPage", { addr_info: res });
+          } else {
+            this.app.getRootNavs()[0].push("HouseDetailPage", res);
+          }
+
         });
       }
     }
   }
-  /*
-    scan() {
-      this.hideScan = true;
-  
-      let modal = this.modalCtrl.create("ScanPage");
-      modal.onWillDismiss((text) => {
-        this.hideScan = false;
-        // if (text) {
-        //   this.handleScanResult(text);
-        // }
-      })
-  
-      modal.onDidDismiss((text) => {
-        // this.hideScan = false;
-        if (text) {
-          this.handleScanResult(text);
-        }
-      });
-      modal.present();
-    }*/
 
   scan() {
-    this.ybss.GetAddress("6aec7fd56a434418a393abb1bd0eb74a", res => {
-      this.app.getRootNavs()[0].push("AddressCatalogPage", { addr_info: res });
-    });
+    this.hideScan = true;
 
+    let modal = this.modalCtrl.create("ScanPage");
+    modal.onWillDismiss((text) => {
+      this.hideScan = false;
+      // if (text) {
+      //   this.handleScanResult(text);
+      // }
+    })
+
+    modal.onDidDismiss((text) => {
+      // this.hideScan = false;
+      if (text) {
+        this.handleScanResult(text);
+      }
+    });
+    modal.present();
   }
+
+  // scan() {
+  //   this.ybss.GetAddress("6aec7fd56a434418a393abb1bd0eb74a", res => {
+  //     this.app.getRootNavs()[0].push("AddressCatalogPage", { addr_info: res });
+  //   });
+
+  // }
 
   sections: any = [
     // {
