@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Store } from '../../provider/Store';
+// import { Store } from '../../provider/Store';
 import { Tools } from '../../provider/Tools';
 import { YBSS } from '../../provider/YBSS';
 
@@ -20,7 +20,7 @@ export class NewEmployerPage {
   // address: any = null;
   company: any;
   constructor(public navCtrl: NavController,
-    private store: Store,
+    // private store: Store,
     private tools: Tools,
     private ybss: YBSS,
     public navParams: NavParams) {

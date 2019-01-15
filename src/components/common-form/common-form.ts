@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, Renderer, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Camera } from '@ionic-native/camera';
 import { Tools } from '../../provider/Tools';
 /**
@@ -22,7 +22,8 @@ export class CommonFormComponent {
   @ViewChild('fileInput') fileInput: ElementRef;
 
   currentFileItem: any;
-  constructor(private renderer: Renderer,
+  constructor(
+    // private renderer: Renderer,
     private tools: Tools,
     private camera: Camera) {
 
@@ -61,6 +62,8 @@ export class CommonFormComponent {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       allowEdit: true,
+      targetWidth: item.imgWidth || 800,
+      targetHeight: item.imgHeight || 800,
       saveToPhotoAlbum: false,
       correctOrientation: true
     }).then(imageURI => {

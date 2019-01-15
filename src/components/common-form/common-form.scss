@@ -2,7 +2,7 @@ common-form {
     .common-form-box {
         .custom-upload-control {
             width: 100%;
-            padding: 15px;
+            padding: 15px 15px 0 15px;
 
             .upload-box {
                 display: flex;
@@ -46,6 +46,7 @@ common-form {
                     line-height: 50px;
                     color: #666;
                     font-size: 28px;
+                    margin-bottom: 15px;
                 }
             }
                         

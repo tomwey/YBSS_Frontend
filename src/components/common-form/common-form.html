@@ -26,7 +26,7 @@
           <div class="image-box" *ngFor="let img of item.value">
             <img [src]="img">
             <span class="close-btn" tappable (click)="removeImg(item, img);">
-              <ion-icon name="ios-close-circle-outline"></ion-icon>
+              <ion-icon name="md-close-circle"></ion-icon>
             </span>
           </div>
           <div class="upload-btn" *ngIf="!item.value || item.value.length === 0 || item.multiple" tappable (click)="uploadFile(item);">

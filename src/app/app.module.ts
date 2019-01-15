@@ -27,7 +27,7 @@ import { SyncPage } from '../pages/sync/sync';
 import { Store } from '../provider/Store';
 import { YBSS } from '../provider/YBSS';
 
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { QRScanner } from '@ionic-native/qr-scanner';
 
 import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';

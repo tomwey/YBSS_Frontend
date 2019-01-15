@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Store } from '../../provider/Store';
+// import { Store } from '../../provider/Store';
 import { Utils } from '../../provider/Utils';
 
 /**
@@ -23,7 +23,7 @@ export class OperationHistoryPage {
   address: any = null;
 
   constructor(public navCtrl: NavController,
-    private store: Store,
+    // private store: Store,
     public navParams: NavParams) {
     this.address = this.navParams.data;
 
@@ -80,10 +80,10 @@ export class OperationHistoryPage {
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad OperationHistoryPage');
-    this.store.getLogs(this.address.ID, (arr) => {
-      this.data = arr;
-      this.error = this.data.length === 0 ? '暂无操作历史' : null;
-    })
+    // this.store.getLogs(this.address.ID, (arr) => {
+    //   this.data = arr;
+    //   this.error = this.data.length === 0 ? '暂无操作历史' : null;
+    // })
   }
 
 }
