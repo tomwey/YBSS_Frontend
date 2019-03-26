@@ -5,6 +5,7 @@ import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 // import { Users } from '../../provider/Users';
 // import { ApiService } from '../../provider/api-service';
 import { YBSS } from '../../provider/YBSS';
+import { Tools } from '../../provider/Tools';
 // import { ComponentsModule } from '../../components/components.module';
 // import { Tools } from '../../provider/Tools';
 
@@ -33,7 +34,7 @@ export class HomePage {
     private app: App,
     private modalCtrl: ModalController,
     // private users: Users,
-    // private tools: Tools,
+    private tools: Tools,
     // private modalCtrl: ModalController,
     // private alertCtrl: AlertController,
     // private api: ApiService,
@@ -56,25 +57,32 @@ export class HomePage {
   }
 
   handleScanResult(text) {
-    let arr = text.split("；");
-    if (arr.length > 1) {
-      let address = arr[1];
-      let arr2 = address.split("：");
-      if (arr2.length > 1) {
-        let addrid = arr2[1];
+    // let arr = text.split("；");
+    // if (arr.length > 1) {
+    //   let address = arr[1];
+    //   let arr2 = address.split("：");
+    //   if (arr2.length > 1) {
+    //     let addrid = arr2[1];
 
-        this.ybss.GetAddress(addrid, (res) => {
-          // console.log(res);
-          if (Array.isArray(res)) {
-            // 有下级地址
-            this.app.getRootNavs()[0].push("AddressCatalogPage", { addr_info: res });
-          } else {
-            this.app.getRootNavs()[0].push("HouseDetailPage", res);
-          }
-
-        });
-      }
+    let reg = new RegExp(/\w{32}/);
+    let arr = reg.exec(text);
+    if (!arr || arr.length === 0) {
+      this.tools.showToast("没有找到地址ID");
+      return;
     }
+
+    this.ybss.GetAddress(arr[0], (res) => {
+      // console.log(res);
+      if (Array.isArray(res)) {
+        // 有下级地址
+        this.app.getRootNavs()[0].push("AddressCatalogPage", { addr_info: res });
+      } else {
+        this.app.getRootNavs()[0].push("HouseDetailPage", res);
+      }
+
+    });
+    //   }
+    // }
   }
 
   scan() {
