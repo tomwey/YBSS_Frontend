@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { /*IonicPage,*/ NavController, NavParams, Content, App } from 'ionic-angular';
+import { /*IonicPage,*/ NavController, NavParams, Content, App, ViewController } from 'ionic-angular';
 // import { ApiService } from '../../provider/api-service';
 // import { DomSanitizer } from '@angular/platform-browser';
 import { Users } from '../../provider/Users';
@@ -36,6 +36,7 @@ export class LoginPage {
     // private san: DomSanitizer,
     private app: App,
     private users: Users,
+    private viewCtrl: ViewController,
     private iosFixed: iOSFixedScrollFreeze,
     private tools: Tools,
   ) {
@@ -51,7 +52,8 @@ export class LoginPage {
   doLogin() {
     this.users.Login(this.user.mobile, this.user.password)
       .then(data => {
-        this.app.getRootNavs()[0].setRoot(TabsPage);
+        // this.app.getRootNavs()[0].setRoot(TabsPage);
+        this.close();
       })
       .catch(error => {
         this.tools.showToast(error);
@@ -60,8 +62,13 @@ export class LoginPage {
     // this.app.getRootNavs()[0].setRoot(TabsPage);
   }
 
+  close() {
+    this.viewCtrl.dismiss();
+  }
+
   forgetPassword() {
-    this.app.getRootNavs()[0].push('PasswordPage', { type: 1 });
+    // this.app.getRootNavs()[0].push('PasswordPage', { type: 1 });
+    this.navCtrl.push('PasswordPage', { type: 1 });
   }
 
 }

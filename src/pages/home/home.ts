@@ -6,6 +6,9 @@ import { iOSFixedScrollFreeze } from '../../provider/iOSFixedScrollFreeze';
 // import { ApiService } from '../../provider/api-service';
 import { YBSS } from '../../provider/YBSS';
 import { Tools } from '../../provider/Tools';
+// import { UserProfilePageModule } from '../user-profile/user-profile.module';
+import { Users } from '../../provider/Users';
+import { LoginPage } from '../login/login';
 // import { ComponentsModule } from '../../components/components.module';
 // import { Tools } from '../../provider/Tools';
 
@@ -32,6 +35,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     // private api: ApiService,
     private app: App,
+    private users: Users,
     private modalCtrl: ModalController,
     // private users: Users,
     private tools: Tools,
@@ -57,13 +61,6 @@ export class HomePage {
   }
 
   handleScanResult(text) {
-    // let arr = text.split("；");
-    // if (arr.length > 1) {
-    //   let address = arr[1];
-    //   let arr2 = address.split("：");
-    //   if (arr2.length > 1) {
-    //     let addrid = arr2[1];
-
     let reg = new RegExp(/\w{32}/);
     let arr = reg.exec(text);
     if (!arr || arr.length === 0) {
@@ -72,37 +69,40 @@ export class HomePage {
     }
 
     this.ybss.GetAddress(arr[0], (res) => {
-      // console.log(res);
       if (Array.isArray(res)) {
         // 有下级地址
         this.app.getRootNavs()[0].push("AddressCatalogPage", { addr_info: res });
       } else {
         this.app.getRootNavs()[0].push("HouseDetailPage", res);
       }
-
     });
-    //   }
-    // }
   }
 
   scan() {
-    this.hideScan = true;
+    this.users.token().then(token => {
+      if (!token) {
+        let modal = this.modalCtrl.create(LoginPage);
+        modal.present();
+      } else {
+        this.hideScan = true;
 
-    let modal = this.modalCtrl.create("ScanPage");
-    modal.onWillDismiss((text) => {
-      this.hideScan = false;
-      // if (text) {
-      //   this.handleScanResult(text);
-      // }
-    })
+        let modal = this.modalCtrl.create("ScanPage");
+        modal.onWillDismiss((text) => {
+          this.hideScan = false;
+          // if (text) {
+          //   this.handleScanResult(text);
+          // }
+        })
 
-    modal.onDidDismiss((text) => {
-      // this.hideScan = false;
-      if (text) {
-        this.handleScanResult(text);
+        modal.onDidDismiss((text) => {
+          // this.hideScan = false;
+          if (text) {
+            this.handleScanResult(text);
+          }
+        });
+        modal.present();
       }
     });
-    modal.present();
   }
 
   // scan() {

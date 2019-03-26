@@ -13,7 +13,8 @@ export class TabsPage {
 
   tab1Root = HomePage;
   // tab2Root = 'ZoneListPage';
-  tab3Root = SyncPage;
+  // tab3Root = SyncPage;
+  tab3Root = 'ServiceHomePage';
   tab4Root = SettingPage;
 
   constructor() {

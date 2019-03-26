@@ -80,7 +80,7 @@ export class AddressCatalogPage {
 
     this.currBuilding = bName;
 
-    console.log(this.units);
+    // console.log(this.units);
 
     if (this.units.length > 0) {
       this.currUnit = this.units[0];
@@ -95,7 +95,13 @@ export class AddressCatalogPage {
   gotoHouse(room) {
     let house = this.roomNoHouses[`${this.currBuilding}-${this.currUnit}-${room}`];
     house.address = `${this.address}${this.currBuilding}${this.currUnit}${room}`;
-    this.navCtrl.push("HouseDetailPage", house);
+    if (this.navParams.data.from_user == '1') {
+      console.log(12);
+      this.navCtrl.push("UserHouseDetailPage", house);
+    } else {
+      this.navCtrl.push("HouseDetailPage", house);
+    }
+
   }
 
   changeUnit(unit) {

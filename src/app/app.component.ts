@@ -23,7 +23,7 @@ export class MyApp {
     // private wechat: Wechat,
     splashScreen: SplashScreen) {
 
-    this.loginIfNeeded();
+    // this.loginIfNeeded();
 
     // this.rootPage = 'UserProfilePage';
 
@@ -35,11 +35,13 @@ export class MyApp {
 
       // this.loginIfNeeded();
     });
+
+    this.rootPage = TabsPage;
   }
 
   loginIfNeeded() {
     this.users.token().then(token => {
-      console.log(token);
+      // console.log(token);
       // console.log('###########');
       if (!token) {
         this.rootPage = LoginPage;

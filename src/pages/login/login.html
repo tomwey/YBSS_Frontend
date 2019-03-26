@@ -5,13 +5,18 @@
   Ionic pages and navigation.
 -->
 
-<!-- <ion-header no-border>
+<ion-header no-border>
 
-    <ion-navbar color="white">
-      <ion-title>用户登录</ion-title>
-    </ion-navbar>
-  
-  </ion-header> -->
+  <ion-navbar color="white">
+    <ion-buttons start>
+      <button ion-button icon-only (click)="close();">
+        <ion-icon name="ios-close-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>用户登录</ion-title>
+  </ion-navbar>
+
+</ion-header>
 
 <ion-content style="background: white;">
   <div class="login-box">

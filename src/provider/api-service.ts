@@ -124,7 +124,7 @@ export class ApiService {
         .toPromise()
         .then(resp => {
           this.hideLoading();
-          console.log('success');
+          // console.log('success');
           let result = this.handleSuccess(resp);
           if (result.code == 0) {
             resolve(result);
@@ -209,7 +209,7 @@ export class ApiService {
   // 处理请求成功的回调
   private handleSuccess(resp: Response): any {
     let body = resp.json();
-    console.log(`result: ${JSON.stringify(body)}`);
+    // console.log(`result: ${JSON.stringify(body)}`);
     if (body.code == 0) {
       let rd: ResultData = { code: 0, total: body.total, data: body.data || {} };
       return rd;

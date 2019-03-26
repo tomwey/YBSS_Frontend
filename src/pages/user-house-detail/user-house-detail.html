@@ -1,0 +1,94 @@
+<!--
+  Generated template for the AddressDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar color="white">
+    <ion-title>详情</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome();">
+        <ion-icon name="ios-home-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background: rgb(247,247,247);">
+  <div class="house-info">
+    <!-- <img [src]="house.image"> -->
+    <div class="house-image" [ngStyle]="{'background-image': 'url(' + house.image + ')'}"></div>
+    <h2 class="address">
+      <ion-icon name="ios-pin-outline"></ion-icon>{{address}}
+    </h2>
+    <div class="other-info box">
+      <ion-item class="head-item">基本信息
+        <!-- <button ion-button item-right (click)="editHouse();">编辑</button> -->
+      </ion-item>
+      <table class="table">
+        <tr>
+          <td class="label">房屋用途</td>
+          <td class="value">{{house.house_use && house.house_use.join(",")}}</td>
+          <td class="label">房屋类型</td>
+          <td class="value">{{house.type}}</td>
+        </tr>
+        <tr>
+
+          <td class="label">结构类型</td>
+          <td class="value">{{house.jg_type}}</td>
+          <td class="label">小区名称</td>
+          <td class="value">{{house.plot_name}}</td>
+        </tr>
+        <tr>
+
+          <td class="label">面积</td>
+          <td class="value">{{house.area || "--"}} 平方米(㎡)</td>
+          <td class="label">房间数(个)</td>
+          <td class="value">{{house.rooms_count || "--"}}</td>
+        </tr>
+        <tr>
+
+          <td class="label">管理等级</td>
+          <td class="value">{{house.mgr_level}}</td>
+          <td class="label">使用类型</td>
+          <td class="value">{{house.use_type}}</td>
+        </tr>
+        <tr>
+
+          <td class="label">租用类型</td>
+          <td class="value">{{house.rent_type}}</td>
+          <td class="label">房屋备注</td>
+          <td class="value">{{house.memo}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="box" style="margin-top: 5px;">
+      <ion-item class="head-item">人口登记日志
+      </ion-item>
+      <div class="list-box">
+        <ion-list>
+          <ion-item *ngFor="let item of manRegisterLogs">
+
+          </ion-item>
+        </ion-list>
+        <div class="empty-box" *ngIf="manRegisterLogs.length === 0">
+          暂无登记日志
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer style="background: #fff">
+  <ion-row>
+    <ion-col col-6>
+      <button ion-button block (click)="inRegister();">人员入住登记</button>
+    </ion-col>
+    <ion-col col-6>
+      <button ion-button block outline (click)="outRegister();">人员离开登记</button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
