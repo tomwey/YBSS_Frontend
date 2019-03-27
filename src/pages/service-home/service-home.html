@@ -14,7 +14,7 @@
 
 
 <ion-content>
-  <div class="sections">
+  <div class="sections" [hidden]="hideScan">
     <ion-grid>
       <ion-row>
         <ion-col col-4 *ngFor="let section of sections">

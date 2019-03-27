@@ -86,37 +86,35 @@ export class ServiceHomePage {
 
   scan() {
 
-    this.handleScanResult(null);
-    return;
-    /*
-        this.hideScan = true;
-    
-        let modal = this.modalCtrl.create("ScanPage");
-        modal.onWillDismiss((text) => {
-          this.hideScan = false;
-        })
-    
-        modal.onDidDismiss((text) => {
-          // this.hideScan = false;
-          if (text) {
-            this.handleScanResult(text);
-          }
-        });
-        modal.present();*/
+    // this.handleScanResult(null);
+    // return;
+
+    this.hideScan = true;
+
+    let modal = this.modalCtrl.create("ScanPage");
+    modal.onWillDismiss((text) => {
+      this.hideScan = false;
+    })
+
+    modal.onDidDismiss((text) => {
+      // this.hideScan = false;
+      if (text) {
+        this.handleScanResult(text);
+      }
+    });
+    modal.present();
   }
 
   handleScanResult(text) {
     let addID = "6aec7fd56a434418a393abb1bd0eb74a";
 
-    /*
     let reg = new RegExp(/\w{32}/);
     let arr = reg.exec(text);
     if (!arr || arr.length === 0) {
       this.tools.showToast("没有找到地址ID");
       return;
     }
-
-    */
+    addID = arr[0];
 
     this.ybss.GetAddress(addID, (res) => {
       if (Array.isArray(res)) {
