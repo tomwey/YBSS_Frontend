@@ -7,11 +7,14 @@
 <ion-header no-border>
 
   <ion-navbar color="primary">
-    <ion-title>{{title}}</ion-title>
+    <ion-title>详情</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-
+  <div class="article">
+    <h2 class="title">{{article.title}}</h2>
+    <div class="body" [innerHTML]="article.body"></div>
+  </div>
 </ion-content>

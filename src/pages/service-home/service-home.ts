@@ -62,11 +62,12 @@ export class ServiceHomePage {
     // console.log(section);
     switch (section.id) {
       case 1: {
-        this.app.getRootNavs()[0].push('ArticleListPage');
+        this.app.getRootNavs()[0].push('ArticleListPage', { cid: '1', title: '平安乡城' });
       }
         break;
       case 2: {
         // this.app.getRootNavs()[0].push('ArticleListPage');
+        this.app.getRootNavs()[0].push('CategoryPage', { pid: '2', title: '政务公开' });
       }
         break;
       case 3: {
@@ -85,10 +86,6 @@ export class ServiceHomePage {
   }
 
   scan() {
-
-    // this.handleScanResult(null);
-    // return;
-
     this.hideScan = true;
 
     let modal = this.modalCtrl.create("ScanPage");

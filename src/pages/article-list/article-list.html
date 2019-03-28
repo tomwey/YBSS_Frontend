@@ -14,5 +14,16 @@
 
 
 <ion-content>
-
+  <div class="empty-error-box" *ngIf="!!error">
+    {{error}}
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let item of data" tappable (click)="openArticle(item);">
+      <h2 class="title" text-wrap>{{item.title}}</h2>
+      <p class="time" *ngIf="!!item.publish_time">{{item.publish_time}}</p>
+      <ion-thumbnail item-right *ngIf="item.cover">
+        <img [src]="item.cover">
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
 </ion-content>

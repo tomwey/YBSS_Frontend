@@ -1,3 +1,29 @@
 page-article-detail {
-
+    .article {
+        padding: 10px 15px;
+        .title {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            color: #333;
+        }
+        .body {
+            padding: 10px 0;
+            img {
+                max-width: 100%;
+                width: 100%;
+                height: auto;
+            }
+            p {
+                font-size: 14px;
+                color: #666;
+                margin: 0;
+                padding: 0;
+                line-height: 20px;
+            }
+            table {
+                width: 100%;
+            }
+        }
+    }
 }

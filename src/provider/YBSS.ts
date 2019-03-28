@@ -48,6 +48,36 @@ export class YBSS {
         });
     }
 
+    GetArticles(cid, callback) {
+        this.api.GET(`categories/${cid}/articles`, null)
+            .then(data => {
+                // console.log(data);
+                if (data && data['data']) {
+                    if (callback) {
+                        callback(data['data']);
+                    }
+                }
+            })
+            .catch(error => {
+                this.tools.showToast(error.message || "服务器出错了~");
+            });
+    }
+
+    GetCategories(pid = null, callback) {
+        this.api.GET(`categories`, { pid: pid })
+            .then(data => {
+                // console.log(data);
+                if (data && data['data']) {
+                    if (callback) {
+                        callback(data['data']);
+                    }
+                }
+            })
+            .catch(error => {
+                this.tools.showToast(error.message || "服务器出错了~");
+            });
+    }
+
     UpdateHouse(house_id, image, payload, callback) {
         let body = new FormData();
         if (image) {

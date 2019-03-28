@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { YBSS } from '../../provider/YBSS';
 
 /**
  * Generated class for the ArticleListPage page.
@@ -16,12 +17,37 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ArticleListPage {
 
   title: any = '';
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  cid: any = null;
+  data: any = [];
+  error: any = null;
+
+  constructor(public navCtrl: NavController,
+    private ybss: YBSS,
+    public navParams: NavParams) {
     this.title = this.navParams.data.title;
+    this.cid = this.navParams.data.cid;
   }
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad ArticleListPage');
+    setTimeout(() => {
+      this.loadData();
+    }, 300);
+  }
+
+  loadData() {
+    this.ybss.GetArticles(this.cid, (res) => {
+      this.data = res;
+      this.error = this.data.length === 0 ? '暂无文章' : null;
+    });
+  }
+
+  openArticle(article) {
+    if (article.body_url) {
+      this.navCtrl.push('BrowserPage', { title: article.title, url: article.body_url });
+    } else {
+      this.navCtrl.push('ArticleDetailPage', { article: article });
+    }
   }
 
 }
