@@ -62,11 +62,11 @@ export class ServiceHomePage {
     // console.log(section);
     switch (section.id) {
       case 1: {
-
+        this.app.getRootNavs()[0].push('ArticleListPage');
       }
         break;
       case 2: {
-
+        // this.app.getRootNavs()[0].push('ArticleListPage');
       }
         break;
       case 3: {
