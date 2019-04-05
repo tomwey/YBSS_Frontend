@@ -174,6 +174,10 @@ export class HouseDetailPage {
     this.navCtrl.push("NewPropertyPage", { house: this.house, id: id });
   }
 
+  editProperty(item) {
+    this.navCtrl.push("EditPropertyPage", { house: this.house, item: item });
+  }
+
   addDailyCheck(item = null) {
     // let modal = this.modalCtrl.create("NewDailyCheckPage")
     let id = null;

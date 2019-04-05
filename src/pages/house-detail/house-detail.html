@@ -92,13 +92,25 @@
     </ion-item>
     <div class="list-box">
       <ion-list>
-        <ion-item *ngFor="let item of house.properties">
-          <h2>{{item.comp_name || item.name}}</h2>
-          <p>产权类型: {{item._type}}</p>
-          <button ion-button item-right *ngIf="item.state === 0" color="danger"
-            (click)="removeItem($event, item, 'property_info');">注销</button>
-          <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
-        </ion-item>
+        <div *ngFor="let item of house.properties">
+          <ion-item-sliding>
+            <ion-item>
+              <h2>{{item.comp_name || item.name}}</h2>
+              <p>产权类型: {{item._type}}</p>
+              <!-- <div item-right>
+                &emsp;
+                <button ion-button *ngIf="item.state === 0" color="danger"
+                  (click)="removeItem($event, item, 'property_info');">注销</button> -->
+              <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
+              <!-- </div> -->
+
+            </ion-item>
+            <ion-item-options side="right" *ngIf="item.state === 0">
+              <button ion-button (click)="editProperty(item);">编辑</button>
+              <button ion-button color="danger" (click)="removeItem($event, item, 'property_info');">注销</button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </div>
       </ion-list>
       <div class="empty-box" *ngIf="house.properties.length === 0">
         暂无产权人信息
