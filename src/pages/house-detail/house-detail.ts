@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
 // import { Store } from '../../provider/Store';
 import { Utils } from '../../provider/Utils';
 import { Tools } from '../../provider/Tools';
@@ -39,10 +39,20 @@ export class HouseDetailPage {
     private alertCtrl: AlertController,
     private tools: Tools,
     private ybss: YBSS,
+    private events: Events,
     public navParams: NavParams) {
     this.house = this.navParams.data;
 
     this.address = this.house.address;
+
+    this.events.subscribe('removed', (res) => {
+      for (const key in res) {
+        if (res.hasOwnProperty(key)) {
+          const element = res[key];
+          this.house[key] = element;
+        }
+      }
+    });
 
     this.prepareMenus();
     this.calcHouseUse();
@@ -136,19 +146,24 @@ export class HouseDetailPage {
   removeItem(ev: Event, item, className) {
     ev.stopPropagation();
 
-    this.showAlert(() => {
-      this.ybss.SaveObj(this.house.id, item.id, className, {
-        state: 1
-      }, null, (res) => {
-        this.tools.showToast("注销成功！");
-        for (const key in res) {
-          if (res.hasOwnProperty(key)) {
-            const element = res[key];
-            this.house[key] = element;
-          }
-        }
-      });
-    });
+    console.log(item);
+    console.log(className);
+
+    this.navCtrl.push('DeletePage', { house_id: this.house.id, item_id: item.id, class: className });
+
+    // this.showAlert(() => {
+    //   this.ybss.SaveObj(this.house.id, item.id, className, {
+    //     state: 1
+    //   }, null, (res) => {
+    //     this.tools.showToast("注销成功！");
+    //     for (const key in res) {
+    //       if (res.hasOwnProperty(key)) {
+    //         const element = res[key];
+    //         this.house[key] = element;
+    //       }
+    //     }
+    //   });
+    // });
   }
 
   addProperty(item = null) {

@@ -79,6 +79,16 @@ export class HomePage {
   }
 
   scan() {
+    this.ybss.GetAddress('3d9fd2ccc530434cb0ec0b5011e3ee35', (res) => {
+      if (Array.isArray(res)) {
+        // 有下级地址
+        this.app.getRootNavs()[0].push("AddressCatalogPage", { addr_info: res });
+      } else {
+        this.app.getRootNavs()[0].push("HouseDetailPage", res);
+      }
+    });
+
+    /*
     this.users.token().then(token => {
       if (!token) {
         let modal = this.modalCtrl.create(LoginPage);
@@ -102,7 +112,7 @@ export class HomePage {
         });
         modal.present();
       }
-    });
+    });*/
   }
 
   // scan() {

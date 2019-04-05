@@ -29,7 +29,7 @@ export class CompanyDetailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CompanyDetailPage');
+    // console.log('ionViewDidLoad CompanyDetailPage');
   }
 
   addEmployee() {

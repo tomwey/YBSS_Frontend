@@ -26,7 +26,11 @@
     </h2>
     <div class="other-info box">
       <ion-item class="head-item">基本信息
-        <button ion-button item-right (click)="editHouse();">编辑</button>
+        <div item-right *ngIf="house.state === 0">
+          <button ion-button (click)="editHouse();">编辑</button>&emsp;
+          <button ion-button (click)="removeItem($event, house, 'house');" color="danger">注销</button>
+        </div>
+
       </ion-item>
       <table class="table">
         <tr>
@@ -91,7 +95,8 @@
         <ion-item *ngFor="let item of house.properties">
           <h2>{{item.comp_name || item.name}}</h2>
           <p>产权类型: {{item._type}}</p>
-          <button ion-button item-right *ngIf="item.state === 0" color="danger" (click)="removeItem($event, item, 'property_info');">注销</button>
+          <button ion-button item-right *ngIf="item.state === 0" color="danger"
+            (click)="removeItem($event, item, 'property_info');">注销</button>
           <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
         </ion-item>
       </ion-list>
@@ -125,7 +130,8 @@
               <p>检查日期: {{check.check_on}}</p>
               <p *ngIf="check.name">单位名称: {{check.name}}</p>
             </div>
-            <button ion-button color="danger" (click)="removeItem($event, check, 'daily_check');" item-right *ngIf="check.state === 0">注销</button>
+            <button ion-button color="danger" (click)="removeItem($event, check, 'daily_check');" item-right
+              *ngIf="check.state === 0">注销</button>
             <ion-note *ngIf="check.state === 1" item-right>已注销</ion-note>
           </ion-item>
         </div>
@@ -144,7 +150,8 @@
       <ion-list>
         <ion-item *ngFor="let item of house.people">
           <h2>{{item.name}}&emsp;{{item.card_no}}</h2>
-          <button ion-button item-right (click)="removeItem($event, item, 'person');" *ngIf="item.state === 0" color="danger">注销</button>
+          <button ion-button item-right (click)="removeItem($event, item, 'person');" *ngIf="item.state === 0"
+            color="danger">注销</button>
           <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
         </ion-item>
       </ion-list>
@@ -160,7 +167,8 @@
       <ion-list>
         <button ion-item *ngFor="let item of house.companies" (click)="gotoCompany(item);">
           <h2>{{item.name}}&emsp;{{item.comp_no3}}</h2>
-          <button ion-button item-right (click)="removeItem($event, item, 'company');" *ngIf="item.state === 0" color="danger">注销</button>
+          <button ion-button item-right (click)="removeItem($event, item, 'company');" *ngIf="item.state === 0"
+            color="danger">注销</button>
           <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
         </button>
       </ion-list>

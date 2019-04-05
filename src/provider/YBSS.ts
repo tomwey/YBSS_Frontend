@@ -99,6 +99,18 @@ export class YBSS {
         });
     }
 
+    DeleteObj(className, params, callback) {
+        this.api.POST(`ybss/house/${className}/delete`, params)
+            .then(res => {
+                if (callback) {
+                    callback(res['data']);
+                }
+            })
+            .catch(error => {
+                this.tools.showToast(error.message || "服务器超时，请重试");
+            })
+    }
+
     SaveObj(house_id, obj_id, className, payload, files = null, callback) {
         let body = new FormData();
 
