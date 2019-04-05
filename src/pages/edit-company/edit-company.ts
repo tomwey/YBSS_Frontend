@@ -12,23 +12,27 @@ import { YBSS } from '../../provider/YBSS';
 
 @IonicPage()
 @Component({
-  selector: 'page-new-company',
-  templateUrl: 'new-company.html',
+  selector: 'page-edit-company',
+  templateUrl: 'edit-company.html',
 })
-export class NewCompanyPage {
+export class EditCompanyPage {
 
   house: any;
-  obj_id: any;
+  // obj_id: any;
+  item: any;
   constructor(public navCtrl: NavController,
     private tools: Tools,
     private ybss: YBSS,
     public navParams: NavParams) {
     this.house = this.navParams.data.house;
-    this.obj_id = this.navParams.data.id;
+    this.item = this.navParams.data.item;
   }
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad NewCompanyPage');
+    this.controls.forEach(control => {
+      control.value = this.item[control.ID];
+    });
   }
 
   controlSelect(control) {
@@ -63,7 +67,7 @@ export class NewCompanyPage {
       obj[control.ID] = control.value || "";
     }
 
-    this.ybss.SaveObj(this.house.id, this.obj_id, "company", obj, null, (res) => {
+    this.ybss.SaveObj(this.house.id, this.item.id, "company", obj, null, (res) => {
       for (const key in res) {
         if (res.hasOwnProperty(key)) {
           const element = res[key];

@@ -160,12 +160,19 @@
     </ion-item>
     <div class="list-box">
       <ion-list>
-        <ion-item *ngFor="let item of house.people">
-          <h2>{{item.name}}&emsp;{{item.card_no}}</h2>
-          <button ion-button item-right (click)="removeItem($event, item, 'person');" *ngIf="item.state === 0"
-            color="danger">注销</button>
-          <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
-        </ion-item>
+        <ion-item-sliding *ngFor="let item of house.people">
+          <ion-item>
+            <h2>{{item.name}}&emsp;{{item.sex}}&emsp;{{item.birth}}</h2>
+            <p>{{item.card_no}}</p>
+            <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
+          </ion-item>
+          <ion-item-options side="right" *ngIf="item.state === 0">
+            <button ion-button color="secondary" (click)="checkPerson(item);">核查</button>
+            <button ion-button color="yellow" (click)="addPersonInfo(item);">添加居住轨迹</button>
+            <button ion-button (click)="editPerson(item);">编辑</button>
+            <button ion-button (click)="removeItem($event, item, 'person');" color="danger">注销</button>
+          </ion-item-options>
+        </ion-item-sliding>
       </ion-list>
       <div class="empty-box" *ngIf="house.people.length === 0">
         暂无居住人口
@@ -177,12 +184,18 @@
     <ion-item class="head-item">实有单位<button ion-button item-right (click)="addCompany();">新增</button></ion-item>
     <div class="list-box">
       <ion-list>
-        <button ion-item *ngFor="let item of house.companies" (click)="gotoCompany(item);">
-          <h2>{{item.name}}&emsp;{{item.comp_no3}}</h2>
-          <button ion-button item-right (click)="removeItem($event, item, 'company');" *ngIf="item.state === 0"
-            color="danger">注销</button>
-          <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
-        </button>
+        <ion-item-sliding *ngFor="let item of house.companies">
+          <button ion-item (click)="gotoCompany(item);">
+            <h2>{{item.name}}&emsp;{{item.comp_no3}}</h2>
+            <p>{{item.address}}</p>
+            <ion-note item-right *ngIf="item.state === 1">已注销</ion-note>
+          </button>
+          <ion-item-options side="right" *ngIf="item.state === 0">
+            <button ion-button color="secondary" (click)="checkCompany(item);">核查</button>
+            <button ion-button (click)="editCompany(item);">编辑</button>
+            <button ion-button (click)="removeItem($event, item, 'company');" color="danger">注销</button>
+          </ion-item-options>
+        </ion-item-sliding>
       </ion-list>
       <div class="empty-box" *ngIf="house.companies.length === 0">
         暂无实有单位

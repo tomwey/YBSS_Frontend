@@ -146,8 +146,8 @@ export class HouseDetailPage {
   removeItem(ev: Event, item, className) {
     ev.stopPropagation();
 
-    console.log(item);
-    console.log(className);
+    // console.log(item);
+    // console.log(className);
 
     this.navCtrl.push('DeletePage', { house_id: this.house.id, item_id: item.id, class: className });
 
@@ -201,6 +201,29 @@ export class HouseDetailPage {
       id = item.id;
     }
     this.navCtrl.push("NewPeoplePage", { house: this.house, id: id });
+  }
+
+  editPerson(item) {
+    this.navCtrl.push("EditPeoplePage", { house: this.house, item: item });
+  }
+
+  checkPerson(item) {
+    this.navCtrl.push("ManCheckPage", { house: this.house, person_id: item.id });
+  }
+
+  addPersonInfo(item) {
+
+  }
+
+  checkCompany(item) {
+    this.navCtrl.push("NewDailyCheckPage", {
+      house: this.house, id: item.id,
+      type: "3"
+    });
+  }
+
+  editCompany(item) {
+    this.navCtrl.push("EditCompanyPage", { house: this.house, item: item });
   }
 
   addCompany(item = null) {
