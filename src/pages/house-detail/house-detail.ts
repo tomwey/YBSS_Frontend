@@ -212,7 +212,7 @@ export class HouseDetailPage {
   }
 
   addPersonInfo(item) {
-
+    this.navCtrl.push("NewPersonTracePage", { house: this.house, person_id: item.id });
   }
 
   checkCompany(item) {
